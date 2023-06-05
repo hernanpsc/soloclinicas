@@ -1,0 +1,60 @@
+<form class="plan-form" autocomplete="off" [formGroup]="clinicaForm" (ngSubmit)="submitForm()">
+<div class="col-12">
+    <div class="card">
+        <h5>Complete los campos </h5>
+        <div class="p-fluid p-formgrid grid">
+            <div class="field col-12 md:col-6">
+                <label htmlFor="nombre">Nombre</label>
+                <input pInputText id="nombre" type="text" formControlName="nombre" placeholder="ej: CLINICA PRIVADA DE OJOS SANTA LUCIA" required/>
+            </div>
+          <div class="field col-12 md:col-6">
+                <label htmlFor="entity">Nombre abreviado</label>
+                <input pInputText id="entity" type="text" formControlName="entity" placeholder="ej: Cl. Priv. De Ojos Sta. Lucia" required/>
+            </div>
+          <!-- <div class="field col-12">
+                <label htmlFor="address">Planes</label>
+                <input pInputTextarea id="cartillas" formControlName="cartillas" placeholder="" />
+
+            </div> -->
+            <div class="col-12 md:col-6" >
+                
+                <p-treeSelect class="w-full md:w-20rem custom-tree-select" containerStyleClass="w-full" (click)="mostrarCoberturas()" formControlName="coberturas" [options]="nodes" display="chip" [metaKeySelection]="false" selectionMode="checkbox" placeholder="Select Item"></p-treeSelect>
+            </div>
+
+
+            
+              
+        <div class="col-12 md:col-6">
+  
+    
+                <p-megaMenu [model]="megaMenuItems" orientation="vertical" [style]="{'width':'200px'}"></p-megaMenu>
+           
+        </div>      
+              
+            <!--     <div class="field col-12">
+                <label htmlFor="address">Address</label>
+                <input pInputTextarea id="address" rows="4" />
+            </div>
+            <div class="field col-12 md:col-6">
+                <label htmlFor="city">City</label>
+                <input pInputText id="city" type="text" />
+            </div>
+            <div class="field col-12 md:col-3">
+                <label htmlFor="state">Región</label>
+                <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"></p-dropdown>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label htmlFor="zip">Zip</label>
+                <input pInputText id="zip" type="text" />
+            </div> -->
+        </div>
+        <div class="m-2">
+            <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-success mr-2" type="submit" [disabled]="clinicaForm.invalid"></button>
+            <button pButton pRipple label="Cancelar" icon="pi pi-trash" class="p-button-danger" [routerLink]="['../../']" ></button>
+        </div>
+    </div>
+ 
+</div>
+
+
+</form>

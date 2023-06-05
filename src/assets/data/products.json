@@ -1,0 +1,703 @@
+[
+   {
+      "id":101,
+      "price":99999,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"basico",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SanCor 700A",
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/700.pdf",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ssf700.png",
+         "assets/images/planes_sancor/Feed 700A-sm(680x664).jpg"
+      ],
+      "BeneficioCard":[
+         "Plan con Coseguros"
+      ],
+      "clinicas":[
+         
+      ]
+   },
+   {
+      "id":102,
+      "price":3550,
+      "rating":3,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"basico",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SanCor 800V",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ssf800.png",
+         "assets/images/planes_sancor/Feed 800V-sm(680x664).jpg"
+      ],
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/800.pdf",
+      "BeneficioCard":[
+         "Plan sin Coseguros"
+      ],
+      "clinicas":[
+         
+      ]
+   },
+   {
+      "id":103,
+      "price":4550,
+      "rating":3,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"basico",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SanCor 1000B",
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/1000.pdf",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ss1000b.png",
+         "assets/images/planes_sancor/Feed 1000B-sm(680x664).jpg"
+      ],
+      "BeneficioCard":[
+         "Plan sin Coseguros"
+      ],
+      "clinicas":[
+         
+      ]
+   },
+   {
+      "id":104,
+      "price":5550,
+      "rating":4,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"intermedio",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SanCor 1500B",
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/1500.pdf",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ss1500b.png",
+         "assets/images/planes_sancor/Feed 1500B-sm(680x664).jpg"
+      ],
+      "BeneficioCard":[
+         "Plan sin Coseguros"
+      ],
+      "clinicas":[
+        
+      ]
+   },
+   {
+      "id":105,
+      "price":6550,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"superior",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SanCor 3000B",
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/3000.pdf",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ss3000b.png",
+         "assets/images/planes_sancor/Feed 3000B-sm(680x664).jpg"
+      ],
+      "BeneficioCard":[
+         "Plan sin Coseguros"
+      ],
+      "clinicas":[
+        
+      ]
+   },
+   {
+      "id":106,
+      "price":8550,
+      "rating":4,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"basico",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SanCor 3500",
+      "empresa":"SanCor Salud",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ss3500.png",
+         "assets/images/planes_sancor/Feed 3500-sm(680x664).jpg"
+      ],
+      "folleto":"assets/archivos/3500.pdf",
+      "BeneficioCard":[
+         "Plan sin Coseguros"
+      ],
+      "clinicas":[
+         
+      ]
+   },
+   {
+      "id":107,
+      "price":9550,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"superior",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SanCor 4000",
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/4000.pdf",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ss4000.png",
+         "assets/images/planes_sancor/Feed 4000-sm(680x664).jpg"
+      ],
+      "BeneficioCard":[
+         "Plan sin Coseguros"
+      ],
+      "clinicas":[
+        
+      ]
+   },
+   {
+      "id":108,
+      "price":12550,
+      "rating":4,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"superior",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SanCor 4500",
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/4500.pdf",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ss4500.png",
+         "assets/images/planes_sancor/Feed 4500-sm(680x664).jpg"
+      ],
+      "BeneficioCard":[
+         "Plan sin Coseguros"
+      ],
+      "clinicas":[
+         
+      ]
+   },
+   {
+      "id":109,
+      "price":22550,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"premium",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"Exclusive_5000 ",
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/5000.pdf",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ss5000.png",
+         "assets/images/planes_sancor/Folleto Exclusive S5000-sm(680x640).jpg"
+      ],
+      "BeneficioCard":[
+         "Plan sin Coseguros"
+      ],
+      "clinicas":[]
+   },
+   {
+      "id":1010,
+      "price":32550,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"premium",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"Exclusive_6000",
+      "empresa":"SanCor Salud",
+      "folleto":"assets/archivos/6000.pdf",
+      "logo":"assets/images/card-header/sancorsalud.png",
+      "images":[
+         "assets/images/images/card-header/sancorsalud.png","assets/images/images/credenciales/ss6000.png",
+         "assets/images/planes_sancor/Folleto Exclusive S6000-sm(680x640).jpg"
+      ],
+      "BeneficioCard":[
+         {
+            "beneficio":"Plan sin Coseguros"
+         },
+         {
+            "beneficio":"otro"
+         }
+      ],
+      "clinicas":[]
+   },
+   {
+      "id":201,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"parcial",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"AMBU1",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/AMBU1.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":202,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"parcial",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"AMBU2",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/AMBU2.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":203,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"parcial internacion",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"INTER1",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/INTER1.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":211,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"basico",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"S1",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"/assets/archivos/folletosSM/S1-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":212,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"basico",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"S2",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"/assets/archivos/folletosSM/S2-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":213,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"basico",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SMG01",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG01-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":214,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"basico",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SMG02",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG02-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":215,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"intermedio",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SMG10",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG10-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":216,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"intermedio",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SMG20",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG20-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":216,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":false,
+      "category":"intermedio",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":false,
+      "name":"SMG20",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG02-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":217,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"premium",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"SMG30",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG30-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":218,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"premium",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"SMG40",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG40-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":219,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"premium",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"SMG50",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG50-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":220,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"premium",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"SMG60",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG60-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   },
+   {
+      "id":221,
+      "price":5555,
+      "rating":2,
+      "feedback":3,
+      "filtroClinica":[
+         
+      ],
+      "copagos":true,
+      "category":"premium",
+      "tags":[
+         "tag1",
+         "tag2",
+         "tag3"
+      ],
+      "hijosSolos":true,
+      "name":"SMG70",
+      "id_empresa": 2,
+      "empresa":"Swiss Medical",
+      "folleto":"assets/archivos/folletosSM/SMG70-01.2023.pdf",
+      "images":[
+         "/assets/images/images/card-header/swissmedical.png"
+      ],
+      "sistema":"cerrado",
+      "clinicas":[]
+   }
+]
+ 

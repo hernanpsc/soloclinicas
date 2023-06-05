@@ -1,0 +1,28 @@
+<h2 class="text-center m-5">Lista de Posts</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let post of posts$ | async">
+            <td>{{post.title}}</td>
+
+            <td>
+                <button class="btn btn-primary me-1" [routerLink]="['editar/', post._id]">Editar</button>
+                <button class="btn btn-danger" (click)="deletePost(post._id || '')">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button class="btn btn-primary mt-3" [routerLink]="['nuevo']">Agrerar Nueva Post</button>
+
+<br>
+<br>
+<br>
+<button class="btn btn-primary mt-3" [routerLink]="['']">Volver</button>

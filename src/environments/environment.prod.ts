@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: false,
+  apiBaseUrl: 'https://comparo.onrender.com' 
+  // apiBaseUrl: 'http://localhost:5200' 
 };

@@ -1,0 +1,85 @@
+.banner-sidebar{
+    width: 100%;
+    height: 460px;
+    background-color: #455a64;
+    background-image: url(fundo-banner-sidebar.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 0 20px 0;
+    border-radius: 8px;
+}
+
+
+.banner-sidebar img{
+    width: 250px;
+    margin: 35px 0 0 0;
+}
+
+
+.banner-sidebar h2{
+    color: #fff;
+    font-weight: 500 !important;
+    font-size: 26px;
+    line-height: 32px;
+    margin: 20px 0 20px 0;
+    padding: 0 10px 0 10px;
+}
+
+
+.banner-sidebar p{
+    color: #e7c54e !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    line-height: 32px !important;
+    margin: 20px 0 20px 0 !important;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+}
+
+.banner-sidebar span{
+    color: #e7c54e;
+    font-weight: 600 !important;
+    font-size: 20px;
+    line-height: 32px;
+    margin: 0 0 25px 0;
+    padding: 0 10px 0 10px;
+    box-sizing: border-box;
+    display: block;
+    letter-spacing: 1px;
+}
+
+.banner-sidebar a{
+    background-color: #fe9d47;
+    box-shadow: 0 -5px 0 0 #cc6f1e inset;
+    padding: 15px 20px 20px 20px;
+    display: inline-block;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.banner-sidebar a:hover{
+    background-color: #4caf50;
+    box-shadow: 0 -5px 0 0 #2c8a30 inset;
+}
+
+@media(max-width:1200px){
+    .banner-sidebar h2 {font-size: 22px;}
+    .banner-sidebar p {font-size: 18px !important;}
+    .banner-sidebar span {font-size: 16px;}
+}
+
+@media(max-width:1050px){
+    .banner-sidebar{height: auto; padding: 0 0 35px 0;}
+    .banner-sidebar h2 {font-size: 18px; line-height: 20px;}
+    .banner-sidebar p {font-size: 14px !important; line-height: 22px !important;}
+    .banner-sidebar a{padding: 10px 10px 15px 10px; font-size: 16px;}
+}
+
+@media(max-width:950px){
+    .banner-sidebar{background-image: none;}
+    .banner-sidebar img {width: 200px;}
+}

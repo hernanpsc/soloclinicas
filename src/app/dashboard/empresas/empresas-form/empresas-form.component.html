@@ -1,0 +1,19 @@
+
+      <form class="empresa-form" autocomplete="off" [formGroup]="empresaForm" (ngSubmit)="submitForm()">
+   
+        <div class="form-floating mb-3">
+            <input class="form-control" type="text" id="name" formControlName="name" placeholder="Nombre" required>
+            <label for="name">Nombre</label>
+          </div>
+              
+          <button class="btn btn-primary" type="submit" [disabled]="empresaForm.invalid">Add</button>
+        </form>
+      
+       
+     
+      
+   
+  
+  
+  
+   

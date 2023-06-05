@@ -1,0 +1,144 @@
+<form class="plan-form" autocomplete="off" [formGroup]="planForm" (ngSubmit)="submitForm()">
+  <!-- <div class="form-floating mb-3">
+    <input class="form-control" type="text" id="_id" formControlName="_id" placeholder="ID" required>
+    <label for="id">id</label>
+  </div> -->
+    <div class="form-floating mb-3">
+      <input class="form-control" type="text" id="name" formControlName="name" placeholder="Name" required>
+      <label for="name">Nombre</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control" type="text" id="price" formControlName="price" placeholder="Price" required>
+      <label for="price">Price</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input class="form-control" type="text" id="precio" formControlName="precio" placeholder="Precio" required>
+      <label for="precio">Precio</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <label for="rating">Rating</label>
+    </div>
+    <br><br>
+   
+    <div class="mb-3">
+     
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="rating" name="rating" id="rating-1" value=1>
+      <label class="form-check-label" for="rating-uno">1</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="rating" name="rating" id="rating-2" value=2>
+      <label class="form-check-label" for="rating-dos">2</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="rating" name="rating" id="rating-3" value=3>
+      <label class="form-check-label" for="rating-tres">3</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="rating" name="rating" id="rating-4" value=4>
+      <label class="form-check-label" for="rating-cuatro">4</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="rating" name="rating" id="rating-5" value=5>
+      <label class="form-check-label" for="rating-cinco">5</label>
+    </div>
+  </div>
+
+    <div class="form-floating mb-3">
+    <label for="copagos">Copagos</label>
+    </div>
+    <br><br>
+    <div class="mb-2">
+     
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="copagos" name="copagos" id="copagos-No" value=false>
+      <label class="form-check-label" for="copagos-no">No</label>
+    </div>
+      <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="copagos" name="copagos" id="copagos-Si" value=true>
+      <label class="form-check-label" for="copagos-si">Si</label>
+    </div>
+  </div>
+    <div class="form-floating mb-3">
+      <label for="category">Category</label>
+    </div>
+    <br><br>
+    <div class="mb-2">
+     
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="category" name="category" id="Inferior" value="Inferior">
+      <label class="form-check-label" for="inferior">Inferior</label>
+    </div>
+      <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="category" name="category" id="intermedio" value="Intermedio">
+      <label class="form-check-label" for="intermedio">Intermedio</label>
+    </div>
+  <div class="form-check">
+  <input class="form-check-input" type="radio" formControlName="category" name="category" id="superior" value="Superior">
+  <label class="form-check-label" for="superior">Superior</label>
+  </div>
+  </div>
+
+
+    <div class="form-floating mb-3">
+     
+      <input class="form-control" type="text" id="tags" formControlName="tags" placeholder="Tags" required>
+      <label for="tags">Tags</label>
+    </div>
+
+
+    <div class="form-floating mb-3">
+      <label for="tags">Hijos Solos?</label>
+    </div>
+    <br><br>
+    <div class="mb-2">
+     
+    <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="hijosSolos" name="hijosSolos" id="hijosSolos-No" value=false>
+      <label class="form-check-label" for="hijosSolos-no">No</label>
+    </div>
+      <div class="form-check">
+      <input class="form-check-input" type="radio" formControlName="hijosSolos" name="hijosSolos" id="hijosSolos-Si" value=true>
+      <label class="form-check-label" for="hijosSolos-si">Si</label>
+    </div>
+  </div>
+
+   
+
+  <div class="form-floating mb-3">
+     
+    <input class="form-control" type="text" id="folletos" formControlName="folletos" placeholder="Folletos">
+    <label for="folleto">Folletos</label>
+  </div>
+
+  <div class="form-floating mb-3">
+     
+    <input class="form-control" type="text" id="clinicas" formControlName="clinicas" placeholder="Clinicas">
+    <label for="clinicas">Clinicas</label>
+  </div>
+  <div class="form-floating mb-3">
+     
+    <input class="form-control" type="text" id="images" formControlName="images" placeholder="Imagenes" >
+    <label for="imagenes">Imagenes</label>
+  </div>
+    
+    
+
+    
+   
+    
+    
+    
+    
+   
+    
+  
+
+
+    <button class="btn btn-primary" type="submit" [disabled]="planForm.invalid">Add</button>
+  </form>
+
+ 

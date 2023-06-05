@@ -1,0 +1,55 @@
+<form class="plan-form" autocomplete="off" [formGroup]="postForm" (ngSubmit)="submitForm()">
+    <!-- <div class="form-floating mb-3">
+      <input class="form-control" type="text" id="_id" formControlName="_id" placeholder="ID" required>
+      <label for="id">id</label>
+    </div> -->
+      <div class="form-floating mb-3">
+        <input class="form-control" type="text" id="title" formControlName="title" placeholder="Título" required>
+        <label for="name">Título</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        <input class="form-control" type="text" id="price" formControlName="content" placeholder="Contenido" required>
+        <label for="price">Contenido</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        <input class="form-control" type="text" id="precio" formControlName="precio" placeholder="Precio" required>
+        <label for="precio">Precio</label>
+      </div>
+  
+      <div class="form-floating mb-3">
+        <label for="rating">Rating</label>
+      </div>
+      <br><br>
+     
+    
+  
+       
+   
+
+  
+     
+  
+    <div class="form-floating mb-3">
+       
+      <input class="form-control" type="text" id="folletos" formControlName="folletos" placeholder="Folletos">
+      <label for="folleto">Folletos</label>
+    </div>
+  
+    <div class="form-floating mb-3">
+       
+      <input class="form-control" type="text" id="clinicas" formControlName="clinicas" placeholder="Clinicas">
+      <label for="clinicas">Clinicas</label>
+    </div>
+    <div class="form-floating mb-3">
+       
+      <input class="form-control" type="text" id="images" formControlName="images" placeholder="Imagenes" >
+      <label for="imagenes">Imagenes</label>
+    </div>
+
+  
+      <button class="btn btn-primary" type="submit" [disabled]="postForm.invalid">Add</button>
+    </form>
+  
+   

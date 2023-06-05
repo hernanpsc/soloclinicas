@@ -1,0 +1,201 @@
+/**/
+::-webkit-input-placeholder{color:#ccc !important}
+:-moz-placeholder{color:#ccc !important}
+::-moz-placeholder{color:#ccc !important}
+:-ms-input-placeholder{color:#ccc !important}
+/**/
+
+.camada-plantao-e-whats{max-width: 100%; background-color: #005c9c; padding: 0 10px 55px 10px; overflow: hidden;}
+
+.camada-plantao-e-whats .corpo{max-width: 1200px; margin: 0 auto 0;}
+
+.chamada-principal{width: 100%; background-color: #004371; position: relative; padding: 30px 0 35px 0;}
+.chamada-principal:before{width: 100%; height: 100%; content: ""; background-color: #004371; position: absolute; left: -100%; top: 0; z-index: 1;}
+.chamada-principal:after{width: 100%; height: 100%; content: ""; background-color: #004371; position: absolute; right: -100%; top: 0; z-index: 1;}
+#wrapper .chamada-principal h2{color: #fff; text-align: center; font-size: 34px; font-weight: 700; margin: 0 0 30px 0; position: relative; z-index: 2;}
+#wrapper .chamada-principal h2:after{width: 100px; height: 5px; background-color: #fff; content: ""; display: block; margin: 10px auto 0; border-radius: 10px;}
+#wrapper .chamada-principal p{color: #fff !important; font-size: 16px !important; font-weight: 700; margin: 0 auto 0; max-width: 600px; text-align: center; position: relative; z-index: 2;}
+
+.camada-plantao-e-whats .elementos{width: 100%; padding: 40px 0 0 0; display: flex;}
+
+.plantao{width: 60%; text-align: center;}
+#wrapper .plantao h3{color: #fff; font-size: 34px; font-weight: 700; margin: 0 0 10px 0;}
+#wrapper .plantao h4{color: #fff; margin: 0 0 25px 0;}
+#wrapper .plantao a{
+    width: fit-content;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto 35px;
+    background-color: #f7941e;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
+    padding: 15px 35px;
+}
+#wrapper .plantao a img{margin: 0 20px 0 0;}
+#wrapper .plantao a:hover{background-color: #64b161;}
+
+#wrapper .lista-vantagens{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    overflow: hidden;
+}
+#wrapper .lista-vantagens h5{width: 100%; color: #fff; margin: 0 0 15px 0; font-size: 18px; font-weight: 700; position: relative; z-index: 2}
+#wrapper .lista-vantagens h5:before{
+    width: 50px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+    background-color: #005c9c;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#wrapper .lista-vantagens h5:after{
+    width: 100%;
+    height: 2px;
+    content: "";
+    z-index: 1;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    margin: 1px 0 0 20px;
+}
+#wrapper .lista-vantagens ul{width: 50%;}
+#wrapper .lista-vantagens ul li{background-image: url(icone-lista-vantagens.svg); background-position: 0 center; background-repeat: no-repeat; background-size: 18px; padding: 5px 0 5px 23px; color: #fff;}
+
+.form-whats{
+    width: 40%;
+    background-color: #64b161;
+    border-radius: 10px;
+    padding: 25px 30px 30px 30px;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.2);
+}
+
+#form-whats.form-whats .loader{
+	width: 52px;
+    height: 52px;
+    background-color: white;
+    background-image: url(gif-enviando.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    border-radius: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    margin: 0 0 0 -26px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    display: none;
+}
+
+#wrapper .form-whats h3{
+    color: #fff;
+    font-size: 34px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#wrapper .form-whats h3 img{
+    height: 33px;
+    margin: 0 7px 0 0;
+}
+
+.form-whats div b{
+    color: #fff !important;
+    font-size: 16px !important;
+    font-weight: 700;
+    max-width: 600px;
+    margin: 0 0 5px 0;
+    display: block;
+}
+
+.form-whats input[type="text"], .form-whats input[type="tel"]{
+    width: 100%;
+    margin: 0 0 15px 0;
+    outline: none;
+    padding: 15px 0 15px 10px;
+    font-size: 15px;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 0 1px #ebebeb;
+}
+
+.form-whats div.telefone{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 55px 1fr;
+    grid-gap: 15px;
+}
+
+.form-whats label{display: none !important;}
+
+.form-whats input[type="submit"]{
+    width: 100%;
+    background-color: #f7941e;
+    border: none;
+    padding: 14px 0;
+    color: #fff;
+    font-family: 'Noto Sans', sans-serif;
+    border-radius: 5px;
+    margin: 5px 0 0 0;
+    display: block;
+    font-size: 18px;
+    outline: none;
+    -webkit-appearance: none;
+    box-shadow: 0 0 0 2px #fff;
+    font-weight: 700;
+}
+.form-whats input[type="submit"]:hover{background-color: #005c9c;}
+
+.form-whats input.error{box-shadow: 0 0 0 2px red !important;}
+.form-whats input.valid{box-shadow: 0 0 0 2px #4caf50 !important;}
+
+@media(max-width:1200px){
+    #wrapper .form-whats h3{font-size: 24px;}
+}
+
+@media(max-width:950px){
+    .camada-plantao-e-whats{padding: 0 10px 40px 10px;}
+    .camada-plantao-e-whats .elementos{flex-wrap: wrap; padding: 30px 0 0 0;}
+    .plantao{width: 100%;}
+    #wrapper .plantao h3{text-align: center;}
+    #wrapper .plantao h4{text-align: center;}
+    #wrapper .plantao a{margin: 0 auto 35px;}
+
+    #wrapper .lista-vantagens{margin: 0 0 30px 0; border-top: 1px dashed #ddd ; padding: 25px 0 0 0;}
+
+    #wrapper .lista-vantagens h5:before, #wrapper .lista-vantagens h5:after{display: none;}
+
+    .form-whats{width: 100%;}
+}
+
+@media(max-width:767px){
+    #wrapper .chamada-principal h2{font-size: 20px; margin: 0 0 8px 0;}
+    #wrapper .chamada-principal p{font-size: 14px !important;}
+
+    #wrapper .plantao h3{font-size: 20px;}
+    #wrapper .plantao h4{font-size: 15px; max-width: 220px; margin: 0 auto 20px;}
+    #wrapper .plantao a{font-size: 24px;}
+    #wrapper .plantao a img{width: 25px; margin: 0 5px 0 0;}
+
+    #wrapper .lista-vantagens{text-align: center;}
+    #wrapper .lista-vantagens ul{width: 100%; text-align: left;}
+    #wrapper .lista-vantagens ul li{font-size: 14px;}
+
+    .form-whats{padding: 20px 10px 10px 10px;}
+    #wrapper .form-whats h3{font-size: 22px; border-bottom: 1px dashed #ddd ; padding: 0 0 20px 0;}
+    #wrapper .form-whats h3 img{height: 24px; margin: 0 5px 0 0;}
+}
