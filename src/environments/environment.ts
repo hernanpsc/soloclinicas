@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-// apiBaseUrl: 'http://localhost:5200'
-
-  apiBaseUrl: 'https://comparo.onrender.com' 
+  // apiBaseUrl: 'https://comparo.onrender.com' 
+  apiBaseUrl: 'http://localhost:5200' 
 };
 /*
  * For easier debugging in development mode, you can import the following file

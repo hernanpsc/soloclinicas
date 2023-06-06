@@ -14,8 +14,11 @@ export class ClinicasService {
   constructor(private httpClient: HttpClient) { }
 
   private refreshClinicas(): void {
-    console.log('Hola servicios')
-    this.httpClient.get<Clinicas[]>(`${this.url}/clinicas`)
+    const headers = {
+      'Content-Type': 'application/json' // O el tipo de contenido adecuado para tu solicitud
+    };
+  
+    this.httpClient.get<Clinicas[]>(`${this.url}/clinicas`, { headers })
       .subscribe({
         next: clinicas => {
           console.log('Respuesta HTTP:', clinicas);

@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/demo/service/product.service';
 
 @Component({
   selector: 'app-clinicas-list',
-  templateUrl: './clinicas-1-list.component.html',
+  templateUrl: './clinicas-list.component.html',
   styleUrls: [ './clinicas-list.component.css']  
 })
 export class ClinicasListComponent implements OnInit {
