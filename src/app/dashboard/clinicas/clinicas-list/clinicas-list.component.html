@@ -8,30 +8,30 @@
            <p-table #dt [value]="clinicas" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id"> -->
                <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Manage Products</h5>
+                        <h5 class="m-0">Administrar Clinicas</h5>
                     
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
+                        <!-- <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                        <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
+                        </th> -->
+                        <!-- <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th> -->
                     
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-clinica>
                     <tr>
-                        <td>
+                        <!-- <td>
                             <p-tableCheckbox [value]="product"></p-tableCheckbox>
-                        </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
+                        </td> -->
+                        <!-- <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
                             {{clinica.item_id}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Name</span>
+                        </td> -->
+                        <td style="width:90%; min-width:10rem;">
+                            <span class="p-column-title">Nombre</span>
                             {{clinica.nombre}}
                         </td>
                      
