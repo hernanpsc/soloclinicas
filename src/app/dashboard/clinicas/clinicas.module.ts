@@ -25,6 +25,7 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeModule } from 'primeng/tree';
 import { MessageService } from 'primeng/api';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { PanelMenuModule } from 'primeng/panelmenu';
 
 
 
@@ -50,7 +51,8 @@ import { MegaMenuModule } from 'primeng/megamenu';
         ClinicasRoutingModule,
         TreeSelectModule,
         TreeModule,
-        MegaMenuModule
+        MegaMenuModule,
+        PanelMenuModule
         
 
 

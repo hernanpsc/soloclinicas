@@ -1,0 +1,146 @@
+<div class="grid">
+    <div class="col-12">
+       <div class="card px-6 py-6">
+          <p-toast></p-toast>
+          <p-toolbar styleClass="mb-4">
+            <ng-template pTemplate="left">
+                <div class="my-2">
+                    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNewClinica()"></button>
+                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedClinicas()" [disabled]="!selectedClinicas || !selectedClinicas.length"></button>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="right">
+                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+            </ng-template>
+        </p-toolbar>
+           <p-table #dt [value]="clinicas" [columns]="columns" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nombre','ubicacion.barrio','ubicacion.region']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedClinicas" selectionMode="multiple" [rowHover]="true" dataKey="_id">
+               <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Gestiona Clinicas</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+
+                        </th>
+                        <th pSortableColumn="_id">Code <p-sortIcon field="_id"></p-sortIcon></th>
+                        <th>Logo</th>
+                        <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+                        <th pSortableColumn="tipo">tipo <p-sortIcon field="tipo"></p-sortIcon></th>
+                        <th pSortableColumn="ubicacion.barrio">Localidad <p-sortIcon field="ubicacion.barrio"></p-sortIcon></th>
+                        <th pSortableColumn="ubicacion.region">Región<p-sortIcon field="ubicacion.region"></p-sortIcon></th>
+                        <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-clinica>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="clinica"></p-tableCheckbox>                    </td>
+                        <td>
+                            {{clinica.item_id}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Logo</span>
+                            {{clinica.imagen}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Nombre</span>
+                            {{clinica.nombre}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span>
+                            {{clinica.tipo}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span>
+                           {{ clinica.ubicacion?.barrio }}
+                        </td>
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span>
+                           {{ clinica.ubicacion?.region }}
+                        </td>
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Reviews</span>
+                            <p-rating [ngModel]="clinica.rating" [readonly]="true" [cancel]="false"></p-rating>
+                        </td>
+                       
+                        <td>
+                            <div class="flex">
+                                <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['editar/', clinica._id]"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteClinica(clinica)"></button> -->
+                    
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editClinica(clinica)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteClinica(clinica)"></button>
+                            </div>
+
+                        </td>
+                        
+                    </tr>
+                </ng-template>
+           </p-table>
+       </div> 
+
+
+
+
+       <p-dialog [(visible)]="clinicaDialog" [style]="{width: '850px',margin:'0px'}" header="" [modal]="true" class="p-fluid">
+      
+       <ng-template pTemplate="content">
+        <app-edit-clinica [clinicaId]="clinica._id" (closeModal)="hideDialogClinica()" ></app-edit-clinica>
+        <!-- <div class="field">
+                <label for="nombre">Nombre</label>
+                <input type="text" pInputText id="nombre" [(ngModel)]="clinica.nombre" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !clinica.nombre}"/>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !clinica.nombre">Name is required.</small>
+            </div>
+            
+            <div class="field">
+                <label htmlFor="entity">Nombre abreviado</label>
+                <input type="text" pInputText id="entity" [(ngModel)]="clinica.entity" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !clinica.entity}"/>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !clinica.entity">Name is required.</small>
+            </div>
+            <div class="field">
+                <label htmlFor="entity">Rating</label>
+                <p-rating [ngModel]="clinica.rating" [readonly]="false" [cancel]="false"></p-rating>
+            </div>
+                    </ng-template>
+         
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialogClinica()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveClinica()"></button>
+        </ng-template>
+    </p-dialog>
+
+   <p-dialog [(visible)]="deleteClinicaDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+
+       <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span *ngIf="clinica">Are you sure you want to delete <b>{{clinica.nombre}}</b>?</span>
+        </div>
+       <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteClinicaDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteClinica(clinica._id || '')"></button> -->
+        </ng-template>
+    </p-dialog>
+   <p-dialog [(visible)]="deleteClinicasDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span>Are you sure you want to delete selected products?</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteClinicasDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelectedClinica()"></button>
+        </ng-template>
+    </p-dialog>
+   </div>
+</div>
+
+
+
+
+
+

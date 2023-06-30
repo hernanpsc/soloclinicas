@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Clinicas } from '../../../interfaces/clinicas';
-import { Product } from '../../../demo/api/product';
-import { MessageService, TreeNode } from 'primeng/api';
-import { Table } from 'primeng/table';
-import { ProductService } from '../../../demo/service/product.service';
 import { NodeService } from '../../../demo/service/node.service';
 import { MegaMenuItem, MenuItem } from 'primeng/api';
 
@@ -18,26 +14,22 @@ export class ClinicasFormComponent implements OnInit {
   @Input()
   initialState: BehaviorSubject<Clinicas> = new BehaviorSubject({});
     @Output()
-    
   formValuesChanged = new EventEmitter<Clinicas>();
 
   @Output()
   formSubmitted = new EventEmitter<Clinicas>();
-
+  @Output() cancelDialog = new EventEmitter<void>();
+    @Input() buttonText: string = 'Guardar';
   clinicaForm: FormGroup = new FormGroup({});
- 
-
   nodes!: any[];
   coberturasControl!: FormControl;
   datosTrans!: any[];
   megaMenuItems: MegaMenuItem[] = [];
-
+  panelMenuItems: MenuItem[] = [];
 
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService,
-    private messageService: MessageService,
     private nodeService: NodeService
     ) { 
       this.nodeService.getFiles().then((files) => (this.nodes = files));
@@ -89,25 +81,22 @@ ngOnInit() {
       coberturasSeleccionadas.forEach((cobertura: any) => {
         if (cobertura.id) {
           if (Array.isArray(cobertura.id)) {
-            // Si el ID es un array, lo concatenamos con el array de IDs seleccionados
             idsSeleccionados.push(...cobertura.id);
           } else {
-            // Si el ID es un valor individual, lo agregamos al array de IDs seleccionados
             idsSeleccionados.push(cobertura.id);
           }
         }
       });
     } this.desarrollarMenu(coberturasSeleccionadas);
-    const datosTransformados = this.transformarDatos(coberturasSeleccionadas);
-this.datosTrans = datosTransformados;
-    // Utiliza los datos transformados como desees
-    console.log(datosTransformados);
+    this.desarrollar_MenuPanel(coberturasSeleccionadas);
+//     const datosTransformados = this.transformarDatos(coberturasSeleccionadas);
+// this.datosTrans = datosTransformados;
+//     console.log(datosTransformados);
       this.clinicaForm.patchValue({ cartillas: idsSeleccionados });
   console.log('Array de ids selecionados:  ' +idsSeleccionados)
     return idsSeleccionados;
   }
   
-  // Suponiendo que tienes los datos del archivo files.json almacenados en la variable "data"
 
   
   
@@ -184,7 +173,7 @@ convertData(data: any[]): any[] {
     if (item.children) {
       const childItems: any[] = [];
 
-      item.children.forEach((child: any) => { // Especificar el tipo 'any' para 'child'
+      item.children.forEach((child: any) => { 
         const childItem: any = {
           label: child.label
         };
@@ -209,15 +198,14 @@ convertData(data: any[]): any[] {
   return convertedData;
 }
 
-
 desarrollarMenu(planesSeleccionados: { [x: string]: { label: string; key: string } }) {
   const itemsPremedic: any = [];
-    const itemsGaleno: any = []; // Declarar como un arreglo
-  const itemsSwissMedical: any = []; // Declarar como un arreglo
-  const itemsAvalian: any = []; // Declarar como un arreglo
-  const itemsOmint: any = []; // Declarar como un arreglo
-  const itemsMedife: any = []; // Declarar como un arreglo
-  const itemsSanCorSalud: any = []; // Declarar como un arreglo
+  const itemsGaleno: any = []; 
+  const itemsSwissMedical: any = []; 
+  const itemsAvalian: any = [];
+  const itemsOmint: any = [];
+  const itemsMedife: any = [];
+  const itemsSanCorSalud: any = [];
 
   for (const planKey in planesSeleccionados) {
       const plan = planesSeleccionados[planKey];
@@ -261,7 +249,6 @@ desarrollarMenu(planesSeleccionados: { [x: string]: { label: string; key: string
             });
             break;
           default:
-            // Plan no reconocido, hacer algo en consecuencia
             break;
         }
       }
@@ -269,7 +256,6 @@ desarrollarMenu(planesSeleccionados: { [x: string]: { label: string; key: string
     console.log(itemsGaleno);
 
   }  
-
 
   const menuMax: MegaMenuItem[] = [];
   const menuPremedic: MegaMenuItem = { label: 'Premedic', items: [] };
@@ -279,9 +265,7 @@ desarrollarMenu(planesSeleccionados: { [x: string]: { label: string; key: string
   const menuSanCorSalud: MegaMenuItem = { label: 'SanCor Salud', items: [] };
   const menuGaleno: MegaMenuItem = { label: 'Galeno', items: [] };
   const menuOmint: MegaMenuItem = { label: 'OMINT', items: [] };
-  
-  // Resto del código...
-  
+    
   if (itemsPremedic.length > 0) {
     menuPremedic.items = [itemsPremedic];
     menuMax.push(menuPremedic);
@@ -314,16 +298,116 @@ desarrollarMenu(planesSeleccionados: { [x: string]: { label: string; key: string
   console.log(JSON.stringify(menuMax, null, 2));
   this.megaMenuItems = menuMax;
   }
-     
+  desarrollar_MenuPanel(planesSeleccionados: { [x: string]: { label: string; key: string } }) {
+    const itemsPremedic: any = [];
+    const itemsGaleno: any = []; 
+    const itemsSwissMedical: any = []; 
+    const itemsAvalian: any = [];
+    const itemsOmint: any = [];
+    const itemsMedife: any = [];
+    const itemsSanCorSalud: any = [];
 
+    for (const planKey in planesSeleccionados) {
+      const plan = planesSeleccionados[planKey];
+      const empresa = plan.key.charAt(0);
 
+      if (plan.hasOwnProperty('id')) {
+        switch (empresa) {
+          case '0':
+            itemsPremedic.push({
+              label: plan.label
+            });
+            break;
+          case '6':
+            itemsGaleno.push({
+              label: plan.label
+            });
+            break;
+          case '2':
+            itemsSwissMedical.push({
+              label: plan.label
+            });
+            break;
+          case '5':
+            itemsAvalian.push({
+              label: plan.label
+            });
+            break;
+          case '4':
+            itemsOmint.push({
+              label: plan.label
+            });
+            break;
+          case '1':
+            itemsMedife.push({
+              label: plan.label
+            });
+            break;
+          case '3':
+            itemsSanCorSalud.push({
+              label: plan.label
+            });
+            break;
+          default:
+            break;
+        }
+      }
+    console.log(itemsPremedic);
+    console.log(itemsGaleno);
 
+  }  
 
+ const menuMax: MenuItem[] = [];
+  const menuPremedic: MenuItem = { label: 'Premedic', items: [] };
+  const menuMedife: MenuItem = { label: 'Medife', items: [] };
+  const menuSwissMedical: MenuItem = { label: 'Swiss Medical', items: [] };
+  const menuAvalian: MenuItem = { label: 'Avalian', items: [] };
+  const menuSanCorSalud: MenuItem = { label: 'SanCor Salud', items: [] };
+  const menuGaleno: MenuItem = { label: 'Galeno', items: [] };
+  const menuOmint: MenuItem = { label: 'OMINT', items: [] };
+    
+  if (itemsPremedic.length > 0) {
+    menuPremedic.items = itemsPremedic;
+    menuMax.push(menuPremedic);
+  }
+  if (itemsGaleno.length > 0) {
+    menuGaleno.items = itemsGaleno;
+    menuMax.push(menuGaleno);
+  }
+  if (itemsSwissMedical.length > 0) {
+    menuSwissMedical.items = itemsSwissMedical;
+    menuMax.push(menuSwissMedical);
+  }
+  if (itemsAvalian.length > 0) {
+    menuAvalian.items = itemsAvalian;
+    menuMax.push(menuAvalian);
+  }
+  if (itemsOmint.length > 0) {
+    menuOmint.items = itemsOmint;
+    menuMax.push(menuOmint);
+  }
+  if (itemsMedife.length > 0) {
+    menuMedife.items = itemsMedife;
+    menuMax.push(menuMedife);
+  }
+  if (itemsSanCorSalud.length > 0) {
+    menuSanCorSalud.items = itemsSanCorSalud;
+    menuMax.push(menuSanCorSalud);
+  }
+  
+  console.log(JSON.stringify(menuMax, null, 2));
+  this.panelMenuItems = menuMax;
+  }
+  
   submitForm() {
-    console.log(this.clinicaForm.value)
+    console.log('esto es en form' + this.clinicaForm.value)
 
     console.log(this.clinicaForm)
     this.formSubmitted.emit(this.clinicaForm.value);
+}
+
+cancelarDialogo(){
+  this.cancelDialog.emit();
 }
 }
 

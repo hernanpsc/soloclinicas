@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input,EventEmitter, Output,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Clinicas } from '../../../interfaces/clinicas';
 import { ClinicasService } from '../../../servicios/clinicas.service';
 
 @Component({
-  selector: 'app-edit-clinica.component.ts',
+  selector: 'app-edit-clinica',
   templateUrl: 'edit-clinica.component.html',
   styleUrls: ['edit-clinica.component.css'],
 })
 export class EditClinicaComponent implements OnInit {
   clinica: BehaviorSubject<Clinicas> = new BehaviorSubject({});
+  @Input() clinicaId?: string;
+  @Output() closeModal = new EventEmitter();
 
   constructor(
     private router: Router,
@@ -19,15 +21,17 @@ export class EditClinicaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.clinicaId;
     if (!id) {
-      alert('id No Provisto');
+      alert('ID no proporcionado');
+      return;
     }
-
-    this.clinicasService.getClinica(id !).subscribe((clinica) => {
+  
+    this.clinicasService.getClinica(id).subscribe((clinica) => {
       this.clinica.next(clinica);
     });
   }
+  
 
   editClinica(clinica: Clinicas) {
     this.clinicasService.updateClinica(this.clinica.value._id || '', clinica)
@@ -40,5 +44,10 @@ export class EditClinicaComponent implements OnInit {
           console.error(error);
         }
       })
+      this.closeModal.emit();
   }
+  cancelarDialogo(){
+    this.closeModal.emit();
+  }
+  
 }

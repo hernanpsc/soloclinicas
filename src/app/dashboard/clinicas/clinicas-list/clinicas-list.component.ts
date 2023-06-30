@@ -17,143 +17,59 @@ export class ClinicasListComponent implements OnInit {
   clinicas$: Observable<Clinicas[]> = new Observable();
   public search: string = '';
 
-  productDialog: boolean = false;
+  clinicaDialog: boolean = false;
 
-  deleteProductDialog: boolean = false;
+  deleteClinicaDialog: boolean = false;
 
-  deleteProductsDialog: boolean = false;
-
-  products: Product[] = [];
+  deleteClinicasDialog: boolean = false;
 
   clinicas: Clinicas[] = [];
 
-  product: Product = {};
+  clinica: Clinicas = {};
 
-  selectedProducts: Product[] = [];
+  selectedClinicas: Clinicas[] = [];
 
   submitted: boolean = false;
 
-  cols: any[] = [];
-
-  statuses: any[] = [];
+  columns: any[] = [];
 
   rowsPerPageOptions = [5, 10, 20];
 
-  constructor(private clinicasService: ClinicasService, private productService: ProductService, private messageService: MessageService) { }
+  constructor(private clinicasService: ClinicasService, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.fetchClinicas();    // this.clinicasService.getClinicas().subscribe(clinicas => {
-    //     this.clinicas = clinicas;});   
-        
-        
-    this.productService.getProducts().then(data => this.products = data);
+    this.fetchClinicas();
 
-    this.cols = [
-        { field: 'product', header: 'Product' },
-        { field: 'price', header: 'Price' },
-        { field: 'category', header: 'Category' },
+    this.columns = [
+        { field: '_id', header: 'ID' },
+        { field: 'nombre', header: 'Nombre' },
+        { field: 'tipo', header: 'Tipo' },
+        { field: 'ubicacion.barrio', header: 'Localidad' },
+        { field: 'ubicacion.region', header: 'Región' },
         { field: 'rating', header: 'Reviews' },
-        { field: 'inventoryStatus', header: 'Status' }
-    ];
+    ];  
 
-    this.statuses = [
-        { label: 'INSTOCK', value: 'instock' },
-        { label: 'LOWSTOCK', value: 'lowstock' },
-        { label: 'OUTOFSTOCK', value: 'outofstock' }
-    ];
 
   }
   private fetchClinicas(): void {
-    console.log('Hola')
     this.clinicasService.getClinicas().subscribe({
       next: (clinicas: Clinicas[]) => {
         this.clinicas = clinicas;
-        console.log('Clinicas:', this.clinicas);
       },
       error: (error: any) => {
         console.error('Error al obtener las clínicas:', error);
       }
     });
   }
-  deleteClinica(id: string): void {
-  
-    // this.clinicasService.deleteClinica(id).subscribe({
-    //   next: () => this.fetchClinicas()
-    // });
+
+  onClinicaSelect() {console.log('Hola')
   }
-
-//   private fetchClinicas(): void {
-//     this.clinicas$ = this.clinicasService.getClinicas();
-//   }
-
-  openNew() {
-    this.product = {};
-    this.submitted = false;
-    this.productDialog = true;
-}
-
-deleteSelectedProducts() {
-    this.deleteProductsDialog = true;
-}
-
-editProduct(product: Product) {
-    this.product = { ...product };
-    this.productDialog = true;
-}
-
-deleteProduct(product: Product) {
-    this.deleteProductDialog = true;
-    this.product = { ...product };
-}
-
-confirmDeleteSelected() {
-    this.deleteProductsDialog = false;
-    this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-    this.selectedProducts = [];
-}
-
-confirmDelete() {
-    this.deleteProductDialog = false;
-    this.products = this.products.filter(val => val.id !== this.product.id);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-    this.product = {};
-}
-
-hideDialog() {
-    this.productDialog = false;
-    this.submitted = false;
-}
-
-saveProduct() {
-    this.submitted = true;
-
-    if (this.product.name?.trim()) {
-        if (this.product.id) {
-            // @ts-ignore
-            this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-            this.products[this.findIndexById(this.product.id)] = this.product;
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-        } else {
-            this.product.id = this.createId();
-            this.product.code = this.createId();
-            this.product.image = 'product-placeholder.svg';
-            // @ts-ignore
-            this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-            this.products.push(this.product);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-        }
-
-        this.products = [...this.products];
-        this.productDialog = false;
-        this.product = {};
-    }
-}
+  
 
 findIndexById(id: string): number {
     let index = -1;
-    for (let i = 0; i < this.products.length; i++) {
-        if (this.products[i].id === id) {
+    for (let i = 0; i < this.clinicas.length; i++) {
+        if (this.clinicas[i]._id === id) {
             index = i;
             break;
         }
@@ -176,4 +92,84 @@ onGlobalFilter(table: Table, event: Event) {
 }
 
 
+
+openNewClinica() {
+    this.clinica = {};
+    this.submitted = false;
+    this.clinicaDialog = true;
+}
+
+
+deleteSelectedClinicas() {
+    this.deleteClinicasDialog = true;
+}
+
+editClinica(clinica: Clinicas) {
+    this.clinica = { ...clinica };
+    this.clinicaDialog = true;
+}
+
+deleteClinica(clinica: Clinicas) {
+    this.deleteClinicaDialog = true;
+    this.clinica = { ...clinica };
+}
+
+confirmDeleteSelectedClinica() {
+    this.deleteClinicasDialog = false;
+    const idsToDelete: string[] = [];
+    // Iterar sobre los objetos en selectedClinicas
+  this.selectedClinicas.forEach(clinica => {
+    // Verificar que el objeto tenga un ID válido antes de agregarlo a idsToDelete
+    if (clinica._id) {
+      idsToDelete.push(clinica._id);
+    }
+  });
+    idsToDelete.forEach(id => {
+        this.clinicasService.deleteClinica(id).subscribe({
+          next: () => this.fetchClinicas(),
+          error: (error: any) => {
+            console.error(`Falló eliminar clinica: ID ${id}`, error);
+          }
+        });
+      });
+    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Clinicas Borrada', life: 3000 });
+    this.selectedClinicas = [];
+}
+
+confirmDeleteClinica(id: string): void {
+    this.deleteClinicaDialog = false;
+    this.clinicasService.deleteClinica(id).subscribe({next: () => this.fetchClinicas()});
+    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Clinica Eliminada', life: 3000 });
+    this.clinica = {};
+}
+
+hideDialogClinica() {
+    this.clinicaDialog = false;
+    this.submitted = false;
+}
+
+saveClinica() {
+    this.submitted = true;
+
+    if (this.clinica.nombre?.trim()) {
+        if (this.clinica._id) {
+            // @ts-ignore
+            this.clinicas[this.findIndexById(this.clinica._id)] = this.clinica;
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Producto Actualizado', life: 3000 });
+        } else {
+            this.clinica._id = this.createId();
+            // @ts-ignore
+            this.clinicas.push(this.clinica);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Clinica Creada', life: 3000 });
+        }
+
+        this.clinicas = [...this.clinicas];
+        this.clinicaDialog = false;
+        this.clinica = {};
+    }
+}
+
+closeModal() {
+  this.clinicaDialog = false;
+}
 }
