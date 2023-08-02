@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://clinicas-listado.onrender.com' 
-  // apiBaseUrl: 'http://localhost:5200' 
+  // apiBaseUrl: 'https://clinicas-listado.onrender.com' 
+  apiBaseUrl: 'http://localhost:5200' 
 };
 /*
  * For easier debugging in development mode, you can import the following file

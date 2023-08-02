@@ -32,20 +32,33 @@ export class EditClinicaComponent implements OnInit {
     });
   }
   
-
   editClinica(clinica: Clinicas) {
-    this.clinicasService.updateClinica(this.clinica.value._id || '', clinica)
+    if (!clinica._id) {
+      console.error('El ID de la clínica es nulo o indefinido. No se puede actualizar la clínica.');
+      return;
+    }
+  
+    // Eliminar el campo _id del objeto clinica antes de enviarlo al servicio de actualización
+    const { _id, ...updatedClinica } = clinica;
+  
+    this.clinicasService.updateClinica(clinica._id || '', updatedClinica)
       .subscribe({
         next: () => {
           this.router.navigate(['/clinicas']);
         },
         error: (error) => {
-          alert('Falló actualizar clinica');
+          alert('Falló actualizar clínica');
           console.error(error);
         }
-      })
-      this.closeModal.emit();
+      });
+  
+    this.closeModal.emit();
   }
+  
+  
+  
+  
+  
   cancelarDialogo(){
     this.closeModal.emit();
   }

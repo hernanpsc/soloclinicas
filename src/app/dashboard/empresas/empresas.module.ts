@@ -16,17 +16,17 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 
-import { ClinicasListComponent } from './clinicas-list/clinicas-list.component';
-import { AddClinicaComponent } from './add-clinica/add-clinica.component';
-import { ClinicasFormComponent } from './clinica-form/clinica-form.component';
-import { EditClinicaComponent } from './edit-clinica/edit-clinica.component';
-import { ClinicasRoutingModule } from './clinicas-routing.module';
+import { EmpresasListComponent } from './empresas-list/empresas-list.component';
+import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
+import { EmpresasFormComponent } from './empresas-form/empresas-form.component';
+import { EditEmpresaComponent } from './edit-empresa/edit-empresa.component';
+import { EmpresasRoutingModule } from './empresas-routing.module';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeModule } from 'primeng/tree';
 import { MessageService } from 'primeng/api';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
-import { DialogService } from 'primeng/dynamicdialog';
+
 
 
 @NgModule({
@@ -48,25 +48,21 @@ import { DialogService } from 'primeng/dynamicdialog';
         DialogModule,
         ReactiveFormsModule,
         RouterModule,
-        ClinicasRoutingModule,
+        EmpresasRoutingModule,
         TreeSelectModule,
         TreeModule,
         MegaMenuModule,
         PanelMenuModule
-        
-
-
     ],
     declarations: [
-        AddClinicaComponent,
-        ClinicasListComponent,
-        ClinicasFormComponent,
-        EditClinicaComponent
+        AddEmpresaComponent,
+        EmpresasListComponent,
+        EmpresasFormComponent,
+        EditEmpresaComponent
     ],
     providers: [
-        MessageService,
-        DialogService
+        MessageService
     ]
     
 })
-export class ClinicasModule { }
+export class EmpresasModule { }

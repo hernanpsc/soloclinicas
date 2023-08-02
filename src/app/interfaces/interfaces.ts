@@ -23,3 +23,8 @@ export interface Imagen {
     icon?: string;
     items?: Item[][];
   }
+
+  export interface PlanSeleccionado {
+    label: string;
+    key: string;
+  }

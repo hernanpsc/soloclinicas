@@ -10,6 +10,8 @@ import { EmpresasService } from '../../../servicios/empresas.service';
 })
 export class EmpresasListComponent implements OnInit {
   empresas$: Observable<Empresa[]> = new Observable();
+  empresaDialog: boolean = false;
+  submitted: boolean = false;
 
   constructor(private empresasService: EmpresasService) { }
 
@@ -22,6 +24,11 @@ export class EmpresasListComponent implements OnInit {
       next: () => this.fetchEmpresas()
     });
   }
+
+  hideDialogEmpresa() {
+    this.empresaDialog = false;
+    this.submitted = false;
+}
 
   private fetchEmpresas(): void {
     this.empresas$ = this.empresasService.getEmpresas();

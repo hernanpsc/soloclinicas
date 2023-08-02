@@ -44,6 +44,8 @@ export class ClinicasService {
   }
 
   updateClinica(id: string, clinicas: Clinicas): Observable<string> {
+    console.log(id)
+    console.log(clinicas)
     return this.httpClient.put(`${this.url}/clinicas/${id}`, clinicas, { responseType: 'text' });
   }
 

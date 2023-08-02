@@ -1,0 +1,14 @@
+/* Agregar estilos para que el contenido ocupe toda la ventana del modal */
+:host ::ng-deep .p-dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  
+  /* Estilos para el contenido del modal */
+  .modal-content {
+    flex: 1;
+    overflow-y: auto; /* Agrega este estilo si deseas que el contenido tenga desplazamiento vertical si es demasiado largo */
+  }
+  

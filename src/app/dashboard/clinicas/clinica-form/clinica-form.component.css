@@ -1,0 +1,44 @@
+/* Estilos para el formulario */
+.plan-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Estilos para los botones en la parte lateral derecha del formulario */
+.m-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 16px;
+}
+
+/* Estilos para los botones */
+.m-2 button {
+  margin-left: 8px;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+/* Estilo adicional para el botón de "Cancelar" */
+.m-2 button.p-button-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Estilo adicional para el botón de "Guardar" */
+.m-2 button.p-button-success {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/* Estilos para el botón "Coberturas" */
+.coberturas-button {
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+}

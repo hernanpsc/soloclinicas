@@ -14,7 +14,11 @@ export interface Planes {
     beneficios?:string[];
     clinicas?:string[];
     _id?: string;
+    item_id?: string;
+  empresa?: string;
+  sigla?: string; 
+  linea?: string; 
   }
   
-
+  
 

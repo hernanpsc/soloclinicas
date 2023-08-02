@@ -1,81 +1,523 @@
 {
     "data": [
-{"key":"0","label": "Premedic","children": [		
-	{"key":"0-0","id":"701","label": "PMO"},	
-	{"key":"0-1","id":"702","label": "C-100"},	
-	{"key":"0-2","id":"703","label": "200"},	
-	{"key":"0-3","id":"704","label": "300"},	
-	{"key":"0-4","id":"705","label": "400"},	
-	{"key":"0-5","id":"706","label": "500"}]},	
-{"key":"1","label": "Medife","children": [		
-	{"key":"1-0","id":"501","label": "Bronce"},	
-	{"key":"1-1","id":"502","label": "Plata"},	
-	{"key":"1-2","id":"503","label": "Oro"}]},	
-{"key":"2","label": "Swiss Medical","children": [		
-	{"key":"2-0","label": "Advance","children": [	
-		{"key":"2-0-0","id":"215","label": "SMG10"}]},
-	{"key":"2-1","label": "Global","children": [	
-		{"key":"2-1-0","id":"212","label": "S2"},
-		{"key":"2-1-1","id":"216","label": "SMG20"}]},
-	{"key":"2-2","label": "Nubial Quality","children": [	
-		{"key":"2-2-0","id":"211","label": "S1"},
-		{"key":"2-2-1","id":"213","label": "SMG01"},
-		{"key":"2-2-2","id":"214","label": "SMG02"}]},
-	{"key":"2-3","label": "Premium","children": [	
-		{"key":"2-3-0","id":"217","label": "SMG30"},
-		{"key":"2-3-1","id":"218","label": "SMG40"},
-		{"key":"2-3-2","id":"219","label": "SMG50"},
-		{"key":"2-3-3","id":"220","label": "SMG60"},
-		{"key":"2-3-4","id":"221","label": "SMG70"}]}
-]},{"key":"3","label": "SanCor Salud","children": [		
-	{"key":"3-0","label": "Fam","children": [	
-		{"key":"3-0-0","id":"101","label": "700"},
-		{"key":"3-0-1","id":"102","label": "800"}]},
-	{"key":"3-1","label": "Clásica","children": [	
-		{"key":"3-1-0","id":"103","label": "1000"},
-		{"key":"3-1-1","id":"104","label": "1500"}]},
-	{"key":"3-2","label": "Evolución","children": [	
-		{"key":"3-2-0","id":"105","label": "3000"},
-		{"key":"3-2-1","id":"106","label": "3500"},
-		{"key":"3-2-2","id":"107","label": "4000"}]},
-	{"key":"3-3","label": "Exclusive","children": [	
-		{"key":"3-3-0","id":"108","label": "4500"},
-		{"key":"3-3-1","id":"109","label": "5000"},
-		{"key":"3-3-2","id":"110","label": "6000"}]}
-]},{"key":"4","label": "Omint","children": [		
-	{"key":"4-0","label": "Génesis","children": [	
-		{"key":"4-0-0","id":["301","302","320","321"],"label": "1500"},
-		{"key":"4-0-1","id":["303","304","322","323"],"label": "2500"}]},
-	{"key":"4-1","label": "Global","children": [	
-		{"key":"4-1-0","id":["305","306","324","325"],"label": "4021"},
-		{"key":"4-1-1","id":["308","309","310","311","326","327"],"label": "4500"}]},
-	{"key":"4-2","label": "Clásico","children": [	
-		{"key":"4-2-0","id":["312","313","314","315","328","329"],"label": "6500"}]},
-	{"key":"4-3","label": "Premium","children": [	
-		{"key":"4-3-0","id":["316","317","318","319"],"label": "8500"}]},
-	{"key":"4-4","label": "Omint midoc","children": [	
-		{"key":"4-4-0","id":["330","331"],"label": "Midoc"}]}
-]},{"key":"5","label": "Avalian","children": [	{"key":"5-0","label": "Cerca","children": [	
-		{"key":"5-0-0","id":"401","label": "AS100"}]},
-	{"key":"5-1","label": "Integral","children": [	
-		{"key":"5-1-0","id":"402","label": "AS200"},
-		{"key":"5-1-1","id":"403","label": "AS204"}]},
-	{"key":"5-2","label": "Superior ","children": [	
-		{"key":"5-2-0","id":"404","label": "AS300"}]},
-	{"key":"5-3","label": "Select","children": [	
-		{"key":"5-3-0","id":"405","label": "AS400"},
-		{"key":"5-3-1","id":"406","label": "AS500"}]}
-]},{"key":"6","label": "Galeno","children": [		
-	{"key":"6-0","label": "AZUL","children": [	
-		{"key":"6-0-0","id":"601","label": "220"}]},
-	{"key":"6-1","label": "PLATA","children": [	
-		{"key":"6-1-0","id":"602","label": "330"}]},
-	{"key":"6-2","label": "ORO","children": [	
-		{"key":"6-2-0","id":"603","label": "440"},
-		{"key":"6-2-1","id":"604","label": "550"}
-
-
-	]}]}]}
+		{
+		  "key": "0",
+		  "label": "Avalian",
+		  "children": [
+			{
+			  "key": "0-0",
+			  "id": "Av_AS100",
+			  "label": "AS100"
+			},
+			{
+			  "key": "0-1",
+			  "id": "Av_AS200",
+			  "label": "AS200"
+			},
+			{
+			  "key": "0-2",
+			  "id": "Av_AS204",
+			  "label": "AS204"
+			},
+			{
+			  "key": "0-3",
+			  "id": "Av_AS300",
+			  "label": "AS300"
+			},
+			{
+			  "key": "0-4",
+			  "id": "Av_AS400",
+			  "label": "AS400"
+			},
+			{
+			  "key": "0-5",
+			  "id": "Av_AS500",
+			  "label": "AS500"
+			},
+			{
+			  "key": "0-6",
+			  "id": "Av_PMO",
+			  "label": "PMO"
+			}
+		  ]
+		},
+		{
+		  "key": "1",
+		  "label": "Fosdic",
+		  "children": [
+			{
+			  "key": "1-0",
+			  "id": "Fo_1000",
+			  "label": "1000"
+			},
+			{
+			  "key": "1-1",
+			  "id": "Fo_2000",
+			  "label": "2000"
+			},
+			{
+			  "key": "1-2",
+			  "id": "Fo_3000",
+			  "label": "3000"
+			},
+			{
+			  "key": "1-3",
+			  "id": "Fo_500",
+			  "label": "500"
+			},
+			{
+			  "key": "1-4",
+			  "id": "Fo_RAS",
+			  "label": "RAS"
+			}
+		  ]
+		},
+		{
+		  "key": "2",
+		  "label": "Galeno",
+		  "children": [
+			{
+			  "key": "2-0",
+			  "id": "Ga_220 AZUL",
+			  "label": "220 AZUL"
+			},
+			{
+			  "key": "2-1",
+			  "id": "Ga_330 PLATA",
+			  "label": "330 PLATA"
+			},
+			{
+			  "key": "2-2",
+			  "id": "Ga_440 ORO",
+			  "label": "440 ORO"
+			},
+			{
+			  "key": "2-3",
+			  "id": "Ga_550 ORO",
+			  "label": "550 ORO"
+			}
+		  ]
+		},
+		{
+		  "key": "3",
+		  "label": "Hominis",
+		  "children": [
+			{
+			  "key": "3-0",
+			  "id": "Ho_Vita",
+			  "label": "Vita"
+			}
+		  ]
+		},
+		{
+		  "key": "4",
+		  "label": "Medife",
+		  "children": [
+			{
+			  "key": "4-0",
+			  "id": "Me_Bronce",
+			  "label": "Bronce"
+			},
+			{
+			  "key": "4-1",
+			  "id": "Me_Oro",
+			  "label": "Oro"
+			},
+			{
+			  "key": "4-2",
+			  "id": "Me_Plata",
+			  "label": "Plata"
+			}
+		  ]
+		},
+		{
+		  "key": "5",
+		  "label": "OMINT",
+		  "children": [
+			{
+			  "key": "5-0",
+			  "id": "OM_1500 20",
+			  "label": "1500 20"
+			},
+			{
+			  "key": "5-1",
+			  "id": "OM_1500 22",
+			  "label": "1500 22"
+			},
+			{
+			  "key": "5-2",
+			  "id": "OM_1500 20 S",
+			  "label": "1500 20 S"
+			},
+			{
+			  "key": "5-3",
+			  "id": "OM_1500 22 S",
+			  "label": "1500 22 S"
+			},
+			{
+			  "key": "5-4",
+			  "id": "OM_2500 20",
+			  "label": "2500 20"
+			},
+			{
+			  "key": "5-5",
+			  "id": "OM_2500 20 S",
+			  "label": "2500 20 S"
+			},
+			{
+			  "key": "5-6",
+			  "id": "OM_2500 24",
+			  "label": "2500 24"
+			},
+			{
+			  "key": "5-7",
+			  "id": "OM_2500 24 S",
+			  "label": "2500 24 S"
+			},
+			{
+			  "key": "5-8",
+			  "id": "OM_4021 20",
+			  "label": "4021 20"
+			},
+			{
+			  "key": "5-9",
+			  "id": "OM_4021 20 S",
+			  "label": "4021 20 S"
+			},
+			{
+			  "key": "5-10",
+			  "id": "OM_4021 22",
+			  "label": "4021 22"
+			},
+			{
+			  "key": "5-11",
+			  "id": "OM_4021 23",
+			  "label": "4021 23"
+			},
+			{
+			  "key": "5-12",
+			  "id": "OM_4021 22 S",
+			  "label": "4021 22 S"
+			},
+			{
+			  "key": "5-13",
+			  "id": "OM_4500 20",
+			  "label": "4500 20"
+			},
+			{
+			  "key": "5-14",
+			  "id": "OM_4500 20 S",
+			  "label": "4500 20 S"
+			},
+			{
+			  "key": "5-15",
+			  "id": "OM_4500 23",
+			  "label": "4500 23"
+			},
+			{
+			  "key": "5-16",
+			  "id": "OM_4500 23 S",
+			  "label": "4500 23 S"
+			},
+			{
+			  "key": "5-17",
+			  "id": "OM_4500 24",
+			  "label": "4500 24"
+			},
+			{
+			  "key": "5-18",
+			  "id": "OM_4500 24 S",
+			  "label": "4500 24 S"
+			},
+			{
+			  "key": "5-19",
+			  "id": "OM_6500 20",
+			  "label": "6500 20"
+			},
+			{
+			  "key": "5-20",
+			  "id": "OM_6500 20 S",
+			  "label": "6500 20 S"
+			},
+			{
+			  "key": "5-21",
+			  "id": "OM_6500 21",
+			  "label": "6500 21"
+			},
+			{
+			  "key": "5-22",
+			  "id": "OM_6500 21 S",
+			  "label": "6500 21 S"
+			},
+			{
+			  "key": "5-23",
+			  "id": "OM_6500 22",
+			  "label": "6500 22"
+			},
+			{
+			  "key": "5-24",
+			  "id": "OM_6500 22 S",
+			  "label": "6500 22 S"
+			},
+			{
+			  "key": "5-25",
+			  "id": "OM_8500 21",
+			  "label": "8500 21"
+			},
+			{
+			  "key": "5-26",
+			  "id": "OM_8500 21 S",
+			  "label": "8500 21 S"
+			},
+			{
+			  "key": "5-27",
+			  "id": "OM_8500 22",
+			  "label": "8500 22"
+			},
+			{
+			  "key": "5-28",
+			  "id": "OM_8500 22 S",
+			  "label": "8500 22 S"
+			},
+			{
+			  "key": "5-29",
+			  "id": "OM_MIDOC10",
+			  "label": "MIDOC10"
+			},
+			{
+			  "key": "5-30",
+			  "id": "OM_MIDOC10S",
+			  "label": "MIDOC10S"
+			}
+		  ]
+		},
+		{
+		  "key": "6",
+		  "label": "OSDE",
+		  "children": [
+			{
+			  "key": "6-0",
+			  "id": "OS_210",
+			  "label": "210"
+			},
+			{
+			  "key": "6-1",
+			  "id": "OS_310",
+			  "label": "310"
+			},
+			{
+			  "key": "6-2",
+			  "id": "OS_410",
+			  "label": "410"
+			},
+			{
+			  "key": "6-3",
+			  "id": "OS_450",
+			  "label": "450"
+			},
+			{
+			  "key": "6-4",
+			  "id": "OS_510",
+			  "label": "510"
+			}
+		  ]
+		},
+		{
+		  "key": "7",
+		  "label": "Premedic",
+		  "children": [
+			{
+			  "key": "7-0",
+			  "id": "Pr_200",
+			  "label": "200"
+			},
+			{
+			  "key": "7-1",
+			  "id": "Pr_300",
+			  "label": "300"
+			},
+			{
+			  "key": "7-2",
+			  "id": "Pr_400",
+			  "label": "400"
+			},
+			{
+			  "key": "7-3",
+			  "id": "Pr_500",
+			  "label": "500"
+			},
+			{
+			  "key": "7-4",
+			  "id": "Pr_PMO",
+			  "label": "PMO"
+			}
+		  ]
+		},
+		{
+		  "key": "8",
+		  "label": "Prevencion Salud",
+		  "children": [
+			{
+			  "key": "8-0",
+			  "id": "PS_A1",
+			  "label": "A1"
+			},
+			{
+			  "key": "8-1",
+			  "id": "PS_A2",
+			  "label": "A2"
+			},
+			{
+			  "key": "8-2",
+			  "id": "PS_A4",
+			  "label": "A4"
+			},
+			{
+			  "key": "8-3",
+			  "id": "PS_A5",
+			  "label": "A5"
+			}
+		  ]
+		},
+		{
+		  "key": "9",
+		  "label": "Salud Central",
+		  "children": [
+			{
+			  "key": "9-0",
+			  "id": "SC_SC30",
+			  "label": "SC30"
+			},
+			{
+			  "key": "9-1",
+			  "id": "SC_SC70",
+			  "label": "SC70"
+			}
+		  ]
+		},
+		{
+		  "key": "10",
+		  "label": "SanCor Salud",
+		  "children": [
+			{
+			  "key": "10-0",
+			  "id": "SS_F800",
+			  "label": "F800"
+			},
+			{
+			  "key": "10-1",
+			  "id": "SS_1000B c/copagos",
+			  "label": "1000B c/copagos"
+			},
+			{
+			  "key": "10-2",
+			  "id": "SS_1000B",
+			  "label": "1000B"
+			},
+			{
+			  "key": "10-3",
+			  "id": "SS_1500B c/copagos",
+			  "label": "1500B c/copagos"
+			},
+			{
+			  "key": "10-4",
+			  "id": "SS_1500B",
+			  "label": "1500B"
+			},
+			{
+			  "key": "10-5",
+			  "id": "SS_3000B",
+			  "label": "3000B"
+			},
+			{
+			  "key": "10-6",
+			  "id": "SS_3500",
+			  "label": "3500"
+			},
+			{
+			  "key": "10-7",
+			  "id": "SS_4000",
+			  "label": "4000"
+			},
+			{
+			  "key": "10-8",
+			  "id": "SS_4500",
+			  "label": "4500"
+			},
+			{
+			  "key": "10-9",
+			  "id": "SS_F700",
+			  "label": "F700"
+			},
+			{
+			  "key": "10-10",
+			  "id": "SS_5000",
+			  "label": "5000"
+			},
+			{
+			  "key": "10-11",
+			  "id": "SS_6000",
+			  "label": "6000"
+			}
+		  ]
+		},
+		{
+		  "key": "11",
+		  "label": "Swiss Medical",
+		  "children": [
+			{
+			  "key": "11-0",
+			  "id": "SM_S1",
+			  "label": "S1"
+			},
+			{
+			  "key": "11-1",
+			  "id": "SM_S2",
+			  "label": "S2"
+			},
+			{
+			  "key": "11-2",
+			  "id": "SM_SMG01",
+			  "label": "SMG01"
+			},
+			{
+			  "key": "11-3",
+			  "id": "SM_SMG02",
+			  "label": "SMG02"
+			},
+			{
+			  "key": "11-4",
+			  "id": "SM_SMG10",
+			  "label": "SMG10"
+			},
+			{
+			  "key": "11-5",
+			  "id": "SM_SMG20",
+			  "label": "SMG20"
+			},
+			{
+			  "key": "11-6",
+			  "id": "SM_SMG40",
+			  "label": "SMG40"
+			},
+			{
+			  "key": "11-7",
+			  "id": "SM_SMG50",
+			  "label": "SMG50"
+			},
+			{
+			  "key": "11-8",
+			  "id": "SM_SMG60",
+			  "label": "SMG60"
+			},
+			{
+			  "key": "11-9",
+			  "id": "SM_SMG70",
+			  "label": "SMG70"
+			}
+		  ]
+		}
+	  ]}
 		
 		
 		

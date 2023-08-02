@@ -13,7 +13,8 @@ export class EmpresasFormComponent implements OnInit {
   @Input()
   initialState: BehaviorSubject<Empresa> = new BehaviorSubject({});
     @Output()
-    
+    @Input() buttonText: string = 'Guardar';
+
   formValuesChanged = new EventEmitter<Empresa>();
 
   @Output()
@@ -22,7 +23,19 @@ export class EmpresasFormComponent implements OnInit {
   empresaForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder) { }
+  get item_id() { return this.empresaForm.get('item_id'); }
   get name() { return this.empresaForm.get('name'); }
+  get ubicacion() { return this.empresaForm.get('ubicacion'); }
+  get sucursales() { return this.empresaForm.get('sucursales'); }
+  get planes() { return this.empresaForm.get('planes'); }
+  get images() { return this.empresaForm.get('images'); }
+  get sigla() { return this.empresaForm.get('sigla'); }
+  get rating() { return this.empresaForm.get('rating'); }
+
+
+
+
+
   
   
   
@@ -33,7 +46,15 @@ export class EmpresasFormComponent implements OnInit {
     this.initialState.subscribe(empresa => {
       this.empresaForm = this.fb.group({
 
-        name: [ empresa.name ],
+        item_id:[empresa.item_id],
+name:[empresa.name],
+ubicación:[empresa.ubicacion],
+sucursales:[empresa.sucursales],
+planes:[empresa.planes],
+images:[empresa.images],
+sigla:[empresa.sigla],
+rating:[empresa.rating]
+
     
       });
     });

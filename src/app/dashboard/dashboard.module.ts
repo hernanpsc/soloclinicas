@@ -11,10 +11,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { DashRoutingModule } from './dashboard-routing.module';
 import { RouterModule } from '@angular/router';
 import { ClinicasModule } from './clinicas/clinicas.module';
-import { EditEmpresaComponent } from './empresas/edit-empresa/edit-empresa.component';
-import { AddEmpresaComponent } from './empresas/add-empresa/add-empresa.component';
-import { EmpresasListComponent } from './empresas/empresas-list/empresas-list.component';
-import { EmpresasFormComponent } from './empresas/empresas-form/empresas-form.component';
+import { EmpresasModule } from './empresas/empresas.module';
+
 import { EditPlanComponent } from './planes/edit-plan/edit-plan.component';
 import { AddPlanComponent } from './planes/add-plan/add-plan.component';
 import { PlanesListComponent } from './planes/planes-list/planes-list.component';
@@ -48,15 +46,11 @@ const publicApi = [DashboardComponent];
         RouterModule,
         ReactiveFormsModule,
         ModalModule,
-        ClinicasModule
-        
+        ClinicasModule,
+        EmpresasModule
     ],
     declarations: [
         DashboardComponent,
-        AddEmpresaComponent,
-        EditEmpresaComponent,
-        EmpresasFormComponent,
-        EmpresasListComponent,
         AddPlanComponent,
         EditPlanComponent,
         PlanesListComponent,

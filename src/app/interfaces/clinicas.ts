@@ -4,7 +4,7 @@ import { Ubicacion as MiUbicacion, Imagen as MiImagen } from './interfaces';
 export interface Clinicas {
   _id?: string;
   item_id?: string;
-  nombre?: string; // Asegúrate de que la propiedad "nombre" esté definida sin el signo de interrogación (?)
+  nombre?: string;
   entity?: string;
   ubicacion?: MiUbicacion;
   url?: string;
@@ -13,6 +13,9 @@ export interface Clinicas {
   especialidades?: string[];
   cartillas?: string[];
   coberturas?: string[];
+  rating?: number[]; 
+  select?: boolean[]; 
 }
+
 
   

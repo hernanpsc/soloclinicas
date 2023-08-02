@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input,EventEmitter, Output,OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Empresa } from '../../../interfaces/empresas';
@@ -11,6 +11,9 @@ import { EmpresasService } from '../../../servicios/empresas.service';
 })
 export class EditEmpresaComponent implements OnInit {
   empresa: BehaviorSubject<Empresa> = new BehaviorSubject({});
+  @Input() empresaId?: string;
+  @Output() closeModal = new EventEmitter();
+
 
   constructor(
     private router: Router,
