@@ -19,6 +19,8 @@ export class ClinicasListComponent implements OnInit {
 
   clinicaDialog: boolean = false;
 
+  addClinicaDialog: boolean = false;
+
   deleteClinicaDialog: boolean = false;
 
   deleteClinicasDialog: boolean = false;
@@ -94,9 +96,8 @@ onGlobalFilter(table: Table, event: Event) {
 
 
 openNewClinica() {
-    this.clinica = {};
     this.submitted = false;
-    this.clinicaDialog = true;
+    this.addClinicaDialog = true;
 }
 
 
@@ -137,39 +138,86 @@ confirmDeleteSelectedClinica() {
 }
 
 confirmDeleteClinica(id: string): void {
-    this.deleteClinicaDialog = false;
-    this.clinicasService.deleteClinica(id).subscribe({next: () => this.fetchClinicas()});
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Clinica Eliminada', life: 3000 });
-    this.clinica = {};
+  // Obtener el nombre de la clínica antes de eliminarla
+  const clinica = this.clinicas.find(c => c._id === id);
+  const clinicaNombre = clinica ? clinica.nombre : 'Clínica'; // Si no se encuentra la clínica, se asigna un valor por defecto
+
+  this.deleteClinicaDialog = false;
+  this.clinicasService.deleteClinica(id).subscribe({
+    next: () => {
+      this.fetchClinicas(); // Actualizar la lista de clínicas después de la eliminación
+
+      // Mostrar mensaje con el nombre de la clínica eliminada
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successful',
+        detail: `${clinicaNombre} eliminada `,
+        life: 3000
+      });
+    },
+    error: (error) => {
+      console.error(error);
+    }
+  });
 }
+
 
 hideDialogClinica() {
     this.clinicaDialog = false;
+    this.addClinicaDialog = false;
+    this.messageService.add({ severity: 'warn', summary: 'Aviso', detail: 'Formulario cancelado.', life: 3000 });
     this.submitted = false;
 }
 
-saveClinica() {
-    this.submitted = true;
-
-    if (this.clinica.nombre?.trim()) {
-        if (this.clinica._id) {
-            // @ts-ignore
-            this.clinicas[this.findIndexById(this.clinica._id)] = this.clinica;
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Producto Actualizado', life: 3000 });
-        } else {
-            this.clinica._id = this.createId();
-            // @ts-ignore
-            this.clinicas.push(this.clinica);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Clinica Creada', life: 3000 });
-        }
-
-        this.clinicas = [...this.clinicas];
-        this.clinicaDialog = false;
-        this.clinica = {};
-    }
+hideModalClinica() {
+  this.clinicaDialog = false;
+  this.addClinicaDialog = false;
+  this.submitted = false;
 }
+
+
 
 closeModal() {
   this.clinicaDialog = false;
 }
+
+clinicaEditdaHandler(clinica: Clinicas) {
+  // Realiza la acción que necesites con la clínica editada
+  const clinicaActualizada = this.clinicas.find(c => c._id === clinica._id);
+
+  if (!clinicaActualizada) {
+    console.error('La clínica no existe en el array de clínicas.');
+    return;
+  }
+
+  const clinicaNombre = clinicaActualizada.nombre;
+
+  this.clinicaDialog = false;
+
+  this.messageService.add({ severity: 'success', summary: 'Éxito', detail: `¡${clinicaNombre} se editó correctamente!`, life: 3000 });
+  // console.log('Clínica editada:', clinica);
+  // Otras acciones...
 }
+
+
+clinicaAgregadaHandler(clinica: Clinicas) {
+  // Realiza la acción que necesites con la clínica agregada
+  this.clinicas.push(clinica);
+  this.addClinicaDialog = false;
+
+  const clinicaAgregada = this.clinicas.find(c => c._id === clinica._id);
+
+  if (clinicaAgregada) {
+    const clinicaNombre = clinicaAgregada.nombre;
+
+    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: `¡${clinicaNombre} se agrogó exitosamente!`, life: 3000 });
+  }
+
+  // console.log('Clínica agregada:', clinica);
+  // Otras acciones...
+}
+
+
+
+}
+

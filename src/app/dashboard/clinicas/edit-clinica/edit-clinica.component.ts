@@ -13,6 +13,8 @@ export class EditClinicaComponent implements OnInit {
   clinica: BehaviorSubject<Clinicas> = new BehaviorSubject({});
   @Input() clinicaId?: string;
   @Output() closeModal = new EventEmitter();
+  @Output() editDialogClosed = new EventEmitter<void>();
+  @Output() clinicaEditada = new EventEmitter<Clinicas>();
 
   constructor(
     private router: Router,
@@ -44,17 +46,19 @@ export class EditClinicaComponent implements OnInit {
     this.clinicasService.updateClinica(clinica._id || '', updatedClinica)
       .subscribe({
         next: () => {
-          this.router.navigate(['/clinicas']);
+// Emitir el evento clinicaEditada con la clínica actualizada
+this.clinicaEditada.emit(clinica);
+          console.log('Evento closeModal emitido'); // Verificar si se emite el evento
+
         },
         error: (error) => {
           alert('Falló actualizar clínica');
           console.error(error);
         }
       });
-  
-    this.closeModal.emit();
+      this.editDialogClosed.emit();
   }
-  
+
   
   
   

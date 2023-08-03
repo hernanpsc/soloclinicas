@@ -12,7 +12,7 @@
                     <label htmlFor="entity">Nombre abreviado</label>
                     <input pInputText id="entity" type="text" formControlName="entity" placeholder="ej: Cl. Priv. De Ojos Sta. Lucia" required/>
                 </div>
-              <div class="field col-12">
+              <div hidden class="field col-12">
                     <label htmlFor="address">Planes</label>
                     <input pInputTextarea id="cartillas" formControlName="cartillas" placeholder="" />
     
@@ -70,8 +70,8 @@
             </div>
             <div class="m-2">
              
-                <button pButton pRipple [label]="buttonText" icon="pi pi-plus" class="p-button-success mr-2" (click)="obtenerIDsSeleccionados();submitForm()" [disabled]="clinicaForm.invalid"></button>
-                <button pButton pRipple label="Cancelar" icon="pi pi-trash" class="p-button-danger" (click)="cancelarDialogo()"></button>
+                <button type="submit" pButton pRipple [label]="buttonText" icon="pi pi-plus" class="p-button-success mr-2" (click)="obtenerIDsSeleccionados()" [disabled]="clinicaForm.invalid"></button>
+                <button type="button" pButton pRipple label="Cancelar" icon="pi pi-trash" class="p-button-danger" (click)="cancelarDialogo();" ></button>
             </div>
             
            </div>

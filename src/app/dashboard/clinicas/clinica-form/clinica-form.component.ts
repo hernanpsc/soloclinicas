@@ -51,11 +51,12 @@ export class ClinicasFormComponent implements OnInit {
 
   @Output()
   formSubmitted = new EventEmitter<Clinicas>();
+  
   @Output() cancelDialog = new EventEmitter<void>();
     @Input() buttonText: string = 'Guardar';
 
 
-
+    isEditMode: boolean = false;
   clinicaForm: FormGroup = new FormGroup({});
   nodes!: TreeNode[]; // Declara la variable 'nodes' con el tipo TreeNode
       coberturasControl!: FormControl;
@@ -118,6 +119,9 @@ ngOnInit() {
       
 
     });
+    const currentClinicaState = this.clinicaForm.get('_id')
+    console.log(currentClinicaState)
+    this.isEditMode = !!currentClinicaState;
     this.obtenerIDsSeleccionados();
     this.mostrarCoberturas();
 
@@ -356,23 +360,34 @@ convertData(data: any[]): any[] {
   }
     
     
-    
   submitForm() {
     const formValue = this.clinicaForm.value;
-    formValue.coberturas.forEach((cobertura: { parent: any; }) => {
-      delete cobertura.parent;
-    });
-    console.log('Coberturas antes de modificar:', JSON.stringify(formValue.coberturas));
-  
-   
-       this.formSubmitted.emit(this.clinicaForm.value);
+    // Realizar acciones según el contexto (agregar o editar)
+    if (this.isEditMode) {
+      // Acciones para editar clínica
+      // ...
+      formValue.coberturas.forEach((cobertura: { parent: any; }) => {
+        delete cobertura.parent;
+      });
 
+      console.log('Datos de clínica editados:', formValue);
+    } else {
+      // Acciones para agregar nueva clínica
+      // ...
+
+      console.log('Nueva clínica agregada:', formValue);
     }
 
+    // Emitir el evento de formulario enviado con los datos actualizados o agregados
+    this.formSubmitted.emit(this.clinicaForm.value);
 
-cancelarDialogo(){
-  this.cancelDialog.emit();
-}
+  }
+
+  cancelarDialogo() {
+    // Emitir el evento de cancelar diálogo
+    this.cancelDialog.emit();
+  }
+  
 
 // Primero, definimos una interfaz para el tipo de datos de los planes seleccionados
 
