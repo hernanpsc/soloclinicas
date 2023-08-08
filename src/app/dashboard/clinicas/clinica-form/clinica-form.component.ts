@@ -17,43 +17,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   selector: 'app-clinicas-form',
   templateUrl: './clinica-form.component.html',
   styleUrls: [ './clinica-form.component.css',  ],
-  animations: [
-    trigger('panelMenuAnimation', [
-      state('visible', style({
-        height: '*',
-        opacity: 1,
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0,
-      })),
-      transition('visible <=> hidden', animate('300ms ease-in-out')),
-    ]),
-    trigger('treeSelectAnimation', [
-      state('visible', style({
-        height: '*',
-        opacity: 1,
-      })),
-      state('hidden', style({
-        height: '0px',
-        opacity: 0,
-      })),
-      transition('visible <=> hidden', animate('300ms ease-in-out')),
-    ]),
-  ]
+
 })
 
 export class ClinicasFormComponent implements OnInit {
-  @Input()
-  initialState: BehaviorSubject<Clinicas> = new BehaviorSubject({});
-    @Output()
-  formValuesChanged = new EventEmitter<Clinicas>();
-
-  @Output()
-  formSubmitted = new EventEmitter<Clinicas>();
-  
+  @Input() initialState: BehaviorSubject<Clinicas> = new BehaviorSubject({});
+  @Output() formValuesChanged = new EventEmitter<Clinicas>();
+  @Output() formSubmitted = new EventEmitter<Clinicas>();
   @Output() cancelDialog = new EventEmitter<void>();
-    @Input() buttonText: string = 'Guardar';
+  @Input() buttonText: string = 'Guardar';
 
 
     isEditMode: boolean = false;
@@ -96,6 +68,7 @@ export class ClinicasFormComponent implements OnInit {
 
      
 ngOnInit() {
+  console.log()
     this.initialState.subscribe(clinica => {
       this.clinicaForm = this.fb.group({
         _id: [ clinica._id ],
@@ -304,9 +277,7 @@ generateMenuLevelTwo(): void {
 
   
   
-toggleItem(item: any) {
-  item.expanded = !item.expanded;
-}
+
   
 convertData(data: any[]): any[] {
   const convertedData: any[] = [];

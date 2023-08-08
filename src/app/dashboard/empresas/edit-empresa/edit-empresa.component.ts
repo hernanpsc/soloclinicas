@@ -1,11 +1,10 @@
 import { Component, Input,EventEmitter, Output,OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Empresa } from '../../../interfaces/empresas';
 import { EmpresasService } from '../../../servicios/empresas.service';
 
 @Component({
-  selector: 'app-edit-empresa.component.ts',
+  selector: 'app-edit-empresa',
   templateUrl: 'edit-empresa.component.html',
   styleUrls: ['edit-empresa.component.css'],
 })
@@ -13,35 +12,53 @@ export class EditEmpresaComponent implements OnInit {
   empresa: BehaviorSubject<Empresa> = new BehaviorSubject({});
   @Input() empresaId?: string;
   @Output() closeModal = new EventEmitter();
+  @Output() editDialogClosed = new EventEmitter<void>();
+  @Output() empresaEditada = new EventEmitter<Empresa>();
 
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
+   
     private empresasService: EmpresasService,
   ) { }
 
+  
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.empresaId;
     if (!id) {
-      alert('id No Provisto');
+      alert('ID no proporcionado');
+      return;
     }
-
-    this.empresasService.getEmpresa(id !).subscribe((empresa) => {
+  console.log(id)
+    this.empresasService.getEmpresa(id).subscribe((empresa) => {
       this.empresa.next(empresa);
     });
   }
+  
 
   editEmpresa(empresa: Empresa) {
-    this.empresasService.updateEmpresa(this.empresa.value._id || '', empresa)
+    if (!empresa._id) {
+      console.error('El ID de la clínica es nulo o indefinido. No se puede actualizar la clínica.');
+      return;
+    }
+    // Eliminar el campo _id del objeto empresa antes de enviarlo al servicio de actualización
+    const { _id, ...updatedEmpresa } = empresa;
+  
+    this.empresasService.updateEmpresa(empresa._id || '', updatedEmpresa)
       .subscribe({
         next: () => {
-          this.router.navigate(['/empresas']);
+// Emitir el evento empresaEditada con la clínica actualizada
+this.empresaEditada.emit(empresa);
+          console.log('Evento closeModal emitido'); // Verificar si se emite el evento
         },
         error: (error) => {
-          alert('Falló actualizar empresa');
+          alert('Falló actualizar clínica');
           console.error(error);
         }
-      })
+      });
+      this.editDialogClosed.emit();
   }
+  cancelarDialogo(){
+    this.closeModal.emit();
+  }
+  
 }

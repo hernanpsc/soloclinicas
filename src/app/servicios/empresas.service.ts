@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { Empresa } from '../interfaces/empresas';
 import { SERVER_URL } from '../constants';
+import { Form } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,9 @@ export class EmpresasService {
 
   deleteEmpresa(id: string): Observable<string> {
     return this.httpClient.delete(`${this.url}/empresas/${id}`, { responseType: 'text' });
+  }
+
+  sendPost(body:FormData):Observable<any>{
+    return this.httpClient.post(`${this.url}/uploads`,body)
   }
 }

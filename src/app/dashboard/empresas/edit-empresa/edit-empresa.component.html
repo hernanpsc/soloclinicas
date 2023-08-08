@@ -1,2 +1,1 @@
-<h2 class="text-center m-5">Editar Empresa</h2>
-<app-empresa-form [initialState]="empresa" (formSubmitted)="editEmpresa($event)"></app-empresa-form>
+<app-empresa-form [initialState]="empresa" (formSubmitted)="editEmpresa($event)" (cancelDialog)="cancelarDialogo()"  buttonText="Actualizar"></app-empresa-form>

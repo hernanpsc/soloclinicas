@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { Clinicas } from '../../../interfaces/clinicas';
 import { ClinicasService } from '../../../servicios/clinicas.service';
 
@@ -12,7 +11,6 @@ export class AddClinicaComponent {
     @Output() closeModal = new EventEmitter();
     @Output() clinicaAgregada = new EventEmitter<Clinicas>();
   constructor(
-    private router: Router,
     private clinicasService: ClinicasService,
    
   ) { }

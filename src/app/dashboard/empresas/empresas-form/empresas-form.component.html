@@ -1,38 +1,128 @@
-<!-- 
-      <form class="empresa-form" autocomplete="off" [formGroup]="empresaForm" (ngSubmit)="submitForm()">
-   
+<form class="plan-form" autocomplete="off" [formGroup]="empresaForm" (ngSubmit)="submitForm()">
+  <!-- ... Otros campos del formulario ... -->
+  <div class="col-12">
+    <div class="card">
+      <!-- <h5>Complete los campos </h5> -->
+      <div class="p-fluid p-formgrid grid">
+        <!-- Item ID -->
         <div class="form-floating mb-3">
-            <input class="form-control" type="text" id="name" formControlName="name" placeholder="Nombre" required>
-            <label for="name">Nombre</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input class="form-control" type="text" id="item_id" formControlName="item_id" placeholder="item_id" required>
-            <label for="item_id">Item ID</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input class="form-control" type="text" id="sigla" formControlName="sigla" placeholder="sigla" required>
-            <label for="sigla">Sigla</label>
-          </div> 
-          <button class="btn btn-primary" type="submit" [disabled]="empresaForm.invalid">Add</button>
-        </form>
+          <label htmlFor="item_id">Item ID</label>
+          <input pInputText type="number" id="item_id" formControlName="item_id" placeholder="item_id" required>
+        </div>
+
+        <!-- Nombre -->
+        <div class="form-floating mb-3">
+          <label htmlFor="nombre">Nombre</label>
+          <input pInputText id="name" type="text" formControlName="name" placeholder="ej: EMPRESA MEDICINA Y SALUD" required/>
+        </div>
+   <!-- Sigla -->
+   <div class="form-floating mb-3">
+    <label for="sigla">Sigla</label>
+    <input pInputText type="text" id="sigla" formControlName="sigla" placeholder="SS" />
+  </div>
+
+            
+    <!-- Ubicaciones -->
+ 
+   <!-- Otros campos de formulario ... -->
+
+<!-- FormArray para ubicaciones -->
+<!-- <div formArrayName="ubicaciones">
+  <div *ngFor="let ubicacion of ubicaciones.controls; let i = index" class="ubicacion-item">
+    <h5>Ubicación {{ i + 1 }}</h5>
+    <div [formGroupName]="i">
+      <input type="text" formControlName="telefono" placeholder="Teléfono">
+      <input type="text" formControlName="barrio" placeholder="Barrio">
+      <div class="field col-12">
+        <label htmlFor="address" >Domicilio</label>
+        <input pInputTextarea formControlName="calle_y_numero" placeholder="Calle y número" rows="4" />
+      </div>
+      <div class="field col-12 md:col-6">
+        <label htmlFor="city">Ciudad</label>
+        <input pInputText id="city" type="text" />
+      </div>
+      <div class="field col-12 md:col-3">
+        <label htmlFor="state">Region</label>
+        <p-dropdown [options]="dropdownItems" optionLabel="name" [(ngModel)]="selectedState"></p-dropdown>
+      </div>
+      <div class="field col-12 md:col-3">
+        <label htmlFor="zip">CP</label>
+        <input pInputText id="zip" type="text" />
+      </div>
       
+      <button type="button" (click)="eliminarUbicacion(i)">Eliminar Ubicación</button>
+    </div>
+  </div>
+</div>
+
+<button pButton pRipple label="Ubicacion" icon="pi pi-plus" (click)="agregarUbicacion()"></button> -->
 
 
 
-        
-        <form class="plan-form" autocomplete="off" [formGroup]="empresaForm" (ngSubmit)="submitForm()">
-            <div class="col-12">
+      <!-- Imágenes -->
+      <button
+      type="button"
+      pButton
+      pRipple
+      label="Cargar Imagen"
+      icon="pi pi-upload"
+      class="p-button-info mr-2"
+      (click)="openUploadImageDialog()"
+    ></button>
+    <!-- Botones de acción -->
+    <div class="m-2">
+      <button type="submit" pButton pRipple [label]="buttonText" icon="pi pi-plus" class="p-button-success mr-2" [disabled]="empresaForm.invalid"></button>
+      <button type="button" pButton pRipple label="Cancelar" icon="pi pi-trash" class="p-button-danger" (click)="cancelarDialogo()"></button>
+    </div>
+  
+  </div></div></div>
+  </form>
+  <p-dialog
+  [(visible)]="displayUploadDialog"
+  [modal]="true"
+  [style]="{ width: '400px' }"
+  header="Cargar Imagen"
+  [responsive]="true"
+  (onHide)="cancelUpload()"
+><div *ngIf="imageUploadForm">
+  <!-- Aquí puedes usar imageUploadForm sin problemas -->
+  
 
+  <form [formGroup]="imageUploadForm" (ngSubmit)="onSubmitUpload()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="image">Imagen</label>
+        <input
+          type="file"
+          id="image"
+          formControlName="image"
+          accept="image/*"
+          (change)="getFile($event)"
+        />
+        <small
+        *ngIf="
+          imageUploadForm.get('image')?.invalid &&
+          imageUploadForm.get('image')?.dirty
+        "
+        class="p-error"
+      >
+        Imagen requerida y debe ser válida (formato de imagen).
+      </small>
       
-                <div class="m-2">
-             
-                    <button pButton pRipple [label]="buttonText" icon="pi pi-plus" class="p-button-success mr-2" type="submit" [disabled]="clinicaForm.invalid"></button>
-                    <button pButton pRipple label="Cancelar" icon="pi pi-trash" class="p-button-danger" (click)="cancelarDialogo()"></button>
-                </div>
-     
-            </div>
-        </form>
-  
-  
-  
-    -->
+      </div>
+      <div class="p-field">
+        <label for="description">Descripción</label>
+        <input
+          type="text"
+          id="description"
+          formControlName="description"
+          placeholder="Descripción de la imagen"
+        />
+      </div>
+      <div class="p-dialog-footer">
+        <button type="" (click)="sendFile()" pButton pRipple label="Cargar" [disabled]="imageUploadForm.invalid"></button>
+        <button type="button" pButton pRipple label="Cancelar" (click)="cancelUpload()"></button>
+      </div>
+    </div>
+  </form></div>
+</p-dialog>

@@ -1,28 +1,128 @@
-<h2 class="text-center m-5">Lista de Empresas</h2>
 
-<table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>Nombre</th>
+<div class="grid">
+    <div class="col-12">
+       <div class="card px-6 py-6">
+          <p-toast></p-toast>
+          <p-toolbar styleClass="mb-4">
+            <ng-template pTemplate="left">
+                <div class="my-2">
+                    <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNewEmpresa()"></button>
+                    <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedEmpresas()" [disabled]="!selectedEmpresas || !selectedEmpresas.length"></button>
+                </div>
+            </ng-template>
 
-        </tr>
-    </thead>
+            <ng-template pTemplate="right">
+                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+            </ng-template>
+        </p-toolbar>
+           <p-table #dt [value]="empresas" [columns]="columns" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nombre','ubicacion.barrio','ubicacion.region']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedEmpresas" selectionMode="multiple" [rowHover]="true" dataKey="_id">
+               <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Gestiona Empresas</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
 
-    <tbody>
-        <tr *ngFor="let empresa of empresas$ | async">
-            <td>{{empresa.name}}</td>
+                        </th>
+                        <th>Empresa</th>
+                        <th pSortableColumn="tipo">tipo <p-sortIcon field="tipo"></p-sortIcon></th>
+                        <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-empresa>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="empresa"></p-tableCheckbox>                    </td>
+            
+                            <td style="width: 14%; min-width: 10rem;">
+                                <span class="p-column-title">Nombre</span>
+                                <ng-container *ngIf="empresa.images && empresa.images.length > 0">
+                                  <img src="{{ empresa.images[0] }}" alt="Imagen" class="imagen-ajustada">
+                                </ng-container>
+                                <ng-container *ngIf="!empresa.images || empresa.images.length === 0">
+                                  <i class="pi pi-image" style="font-size: 2rem;"></i> <!-- Puedes usar otro icono o mensaje aquí -->
+                                </ng-container>
+                              </td>
+                              
+                            
+                       <td style="width:14%; min-width:10rem;">{{empresa.name}}
+</td>                        
 
-            <td>
-                <button class="btn btn-primary me-1" [routerLink]="['editar/', empresa._id]">Editar</button>
-                <button class="btn btn-danger" (click)="deleteEmpresa(empresa._id || '')">Eliminar</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
 
-<button class="btn btn-primary mt-3" [routerLink]="['nuevo']">Agrerar Nueva Empresa</button>
+                        <!-- <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span> -->
+                            <!-- {{clinica.tipo}} -->
+                        <!-- </td> -->
+                        <!-- <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span> -->
+                           <!-- {{ clinica.ubicacion?.barrio }} -->
+                        <!-- </td> -->
+                    
+                        <!-- <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span> -->
+                           <!-- {{ clinica.ubicacion?.region }} -->
+                        <!-- </td> -->
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Reviews</span>
+                            <p-rating [ngModel]="empresa.rating" [readonly]="true" [cancel]="false"></p-rating>
+                        </td>
+                       
+                        <td>
+                            <div class="flex">
+                                <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['editar/', clinica._id]"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteClinica(clinica)"></button> -->
+                    
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editEmpresa(empresa)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteEmpresa(empresa)"></button>
+                            </div>
 
-<br>
-<br>
-<br>
-<button class="btn btn-primary mt-3" [routerLink]="['']">Volver</button>
+                        </td>
+                        
+                    </tr>
+                </ng-template>
+           </p-table>
+       </div> 
+
+
+
+       <p-dialog [(visible)]="empresaDialog"  [style]="{width: '840px' ,margin: '0px'}" [maximizable]="true" header="Editar Empresas" [modal]="true" class="p-fluid custom-dialog">
+       <ng-template pTemplate="content">
+        <app-edit-empresa [empresaId]="empresa._id" (empresaEditada)="empresaEditadaHandler($event)" (closeModal)="hideDialogEmpresa()"></app-edit-empresa>
+
+                    </ng-template>
+         
+
+    </p-dialog>
+    <p-dialog [(visible)]="addEmpresaDialog"  [style]="{width: '840px' ,margin: '0px'}" [maximizable]="true" header="Agregar Nueva Empresa" [modal]="true" class="p-fluid custom-dialog">
+        <ng-template pTemplate="content">
+         <app-add-empresa  (empresaAgregada)="empresaAgregadaHandler($event)" (closeModal)="hideDialogEmpresa()" ></app-add-empresa>
+                     </ng-template>                    
+     </p-dialog>
+   <p-dialog [(visible)]="deleteEmpresaDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+
+       <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span *ngIf="empresa">Confirmar eliminar prestador <b>{{empresa.name}}</b>?</span>
+        </div>
+       <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteEmpresaDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteEmpresa(empresa._id || '')"></button>
+        </ng-template>
+    </p-dialog>
+   <p-dialog [(visible)]="deleteEmpresasDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span>Are you sure you want to delete selected products?</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteEmpresasDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelectedEmpresa()"></button>
+        </ng-template>
+    </p-dialog>
+   </div>
+</div>
