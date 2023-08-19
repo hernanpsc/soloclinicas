@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Empresa } from '../../../interfaces/empresas';
 import { EmpresasService } from '../../../servicios/empresas.service';
 import { map } from 'rxjs/operators';
+import { SERVER_URL } from '../../../constants';
 
 @Component({
   selector: 'app-empresa-form',
@@ -27,6 +28,7 @@ export class EmpresasFormComponent implements OnInit {
   generatedSiglas: string[] = [];
   generatedItemIDs: number[] = [];
   generated_ids: string[] = [];
+  serverUrl = SERVER_URL;
   constructor(private fb: FormBuilder,private http: HttpClient,private empresasService: EmpresasService) {
     this.imageUploadForm = this.fb.group({
       image: [null, Validators.required],
@@ -208,7 +210,7 @@ submitForm() {
     const formData = new FormData();
     formData.append('image', this.selectedFile, this.selectedFile.name);
 console.log(this.selectedFile.name)
-    this.http.post<any>('http://localhost:5200/upload', formData).subscribe(
+    this.http.post<any>(this.serverUrl, formData).subscribe(
       response => {
         console.log('Imagen cargada correctamente');
         // Aquí puedes actualizar el array images[] con la URL de la imagen cargada en el servidor
