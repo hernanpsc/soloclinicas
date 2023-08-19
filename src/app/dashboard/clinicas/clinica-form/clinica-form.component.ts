@@ -5,6 +5,7 @@ import { Clinicas } from '../../../interfaces/clinicas';
 import { Empresa } from '../../../interfaces/empresas';
 import { Planes } from '../../../interfaces/planes';
 import { PlanSeleccionado } from '../../../interfaces/interfaces';
+import { map } from 'rxjs/operators';
 
 import { MyMenuItem } from '../../../interfaces/menu'; // Importamos la interfaz MenuItem desde el archivo creado
 import { MegaMenuItem, MenuItem } from 'primeng/api';
@@ -12,7 +13,7 @@ import { ClinicasService } from '../../../servicios/clinicas.service'; // Reempl
 import { EmpresasService } from '../../../servicios/empresas.service'; // Reemplaza "ruta-del-servicio" con la ruta correcta a tu servicio.
 import { PlanesService } from '../../../servicios/planes.service'; 
 import { TreeNode } from 'primeng/api'; // Importa la interfaz TreeNode directamente desde 'primeng/api'
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Tree } from 'primeng/tree';
 @Component({
   selector: 'app-clinicas-form',
   templateUrl: './clinica-form.component.html',
@@ -26,9 +27,10 @@ export class ClinicasFormComponent implements OnInit {
   @Output() formSubmitted = new EventEmitter<Clinicas>();
   @Output() cancelDialog = new EventEmitter<void>();
   @Input() buttonText: string = 'Guardar';
+  @ViewChild('tree') tree: Tree | undefined;
 
 
-    isEditMode: boolean = false;
+  isEditMode: boolean = false;
   clinicaForm: FormGroup = new FormGroup({});
   nodes!: TreeNode[]; // Declara la variable 'nodes' con el tipo TreeNode
       coberturasControl!: FormControl;
@@ -42,11 +44,13 @@ export class ClinicasFormComponent implements OnInit {
   planesData: Planes[] = [];
   coberturasMenu: MenuItem[] = []; // Aquí guardaremos el menú generado
   showPanelMenu = true; 
+  selectedCoberturas: TreeNode[] = []; // Aquí almacena las coberturas seleccionadas
+  generated_ids: string[] = [];
    constructor(
     private fb: FormBuilder,
     private clinicasService: ClinicasService, 
     private empresasService: EmpresasService,
-    private planesService: PlanesService
+    private planesService: PlanesService,
     ) { 
 
     }
@@ -68,8 +72,11 @@ export class ClinicasFormComponent implements OnInit {
 
      
 ngOnInit() {
-  console.log()
-    this.initialState.subscribe(clinica => {
+  this.clinicasService.getClinicas().pipe(
+    map((clinicas: any[]) => {
+      this.generated_ids = clinicas.map(clinica => clinica._id);    })
+  ).subscribe();
+   this.initialState.subscribe(clinica => {
       this.clinicaForm = this.fb.group({
         _id: [ clinica._id ],
         nombre: [ clinica.nombre ],
@@ -89,18 +96,22 @@ ngOnInit() {
 
       });
       
-      
+      if (clinica._id) { // Verificar si initialState está vacío (null)
+        this.isEditMode = true;
+      } 
 
     });
+  
     const currentClinicaState = this.clinicaForm.get('_id')
     console.log(currentClinicaState)
-    this.isEditMode = !!currentClinicaState;
+    
     this.obtenerIDsSeleccionados();
     this.mostrarCoberturas();
 
     this.clinicaForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
   }
-
+ 
+  
  
   mostrarCoberturas() {
     this.generateMenuLevelOne();
@@ -206,12 +217,12 @@ generateMenuLevelTwo(): void {
   
   obtenerIDsSeleccionados(): string[] {
     const coberturasSeleccionadas = this.clinicaForm.get('coberturas')?.value;
-    console.log('esta es la linea 97 coberturasSeleccionadas' + coberturasSeleccionadas)
+    console.log('esta es la linea 97 coberturasSeleccionadas' + coberturasSeleccionadas);
     const idsSeleccionados: string[] = [];
   
     if (coberturasSeleccionadas && Array.isArray(coberturasSeleccionadas)) {
       coberturasSeleccionadas.forEach((cobertura: any) => {
-        if (cobertura.id) {
+        if (cobertura && cobertura.id) {
           if (Array.isArray(cobertura.id)) {
             idsSeleccionados.push(...cobertura.id);
           } else {
@@ -219,15 +230,17 @@ generateMenuLevelTwo(): void {
           }
         }
       });
-    } 
+    }
+  
     this.desarrollar_MenuPanel(coberturasSeleccionadas);
-//     const datosTransformados = this.transformarDatos(coberturasSeleccionadas);
-// this.datosTrans = datosTransformados;
-//     // console.log(datosTransformados);
-      this.clinicaForm.patchValue({ cartillas: idsSeleccionados });
-  console.log('Array de ids selecionados:  ' + idsSeleccionados)
+    // const datosTransformados = this.transformarDatos(coberturasSeleccionadas);
+    // this.datosTrans = datosTransformados;
+    // console.log(datosTransformados);
+    this.clinicaForm.patchValue({ cartillas: idsSeleccionados });
+    console.log('Array de ids seleccionados: ' + idsSeleccionados);
     return idsSeleccionados;
   }
+  
   
   onEmpresaSeleccionada(empresa: string): void {
     const empresaSeleccionada = this.menuData.data.find((item: MyMenuItem) => item.label === empresa);
@@ -333,8 +346,9 @@ convertData(data: any[]): any[] {
     
   submitForm() {
     const formValue = this.clinicaForm.value;
+    console.log(this.isEditMode)
     // Realizar acciones según el contexto (agregar o editar)
-    if (this.isEditMode) {
+    if  (this.isEditMode == true) {
       // Acciones para editar clínica
       // ...
       formValue.coberturas.forEach((cobertura: { parent: any; }) => {
@@ -345,7 +359,9 @@ convertData(data: any[]): any[] {
     } else {
       // Acciones para agregar nueva clínica
       // ...
-
+      const new_id = this.generate_id(24)
+      this.clinicaForm.patchValue({_id: new_id });
+      formValue._id = new_id; 
       console.log('Nueva clínica agregada:', formValue);
     }
 
@@ -440,6 +456,26 @@ generarMenu(menuLabels: { [x: string]: string }, itemsPorEmpresa: { [x: string]:
   // console.log('menu antes de modificar:', JSON.stringify(menu));
   return menu;
 }
+
+generate_id(length: number): string {
+  let number = '';
+  for (let i = 0; i < length; i++) {
+    const digit = Math.floor(Math.random() * 10);
+    number += digit;
+  }
+
+  while (this.generated_ids.includes(number)) {
+    number = ''; // Reinicia el número
+    for (let i = 0; i < length; i++) {
+      const digit = Math.floor(Math.random() * 10);
+      number += digit;
+    }
+  }
+
+  this.generated_ids.push(number);
+  return number;
+}
+
 }
 
 

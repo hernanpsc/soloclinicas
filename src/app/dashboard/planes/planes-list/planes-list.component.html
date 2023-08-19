@@ -1,30 +1,130 @@
-<h2 class="text-center m-5">Lista de Planes</h2>
-<button type="button" class="btn btn-primary mt-3" (click)="openModa('custom-modal-3')">Cotizar</button> 
+<div class="grid">
+    <div class="col-12">
+       <div class="card px-6 py-6">
+          <p-toast></p-toast>
+          <p-toolbar styleClass="mb-4">
+            <ng-template pTemplate="left">
+                <div class="my-2">
+                    <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNewPlan()"></button>
+                    <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedPlanes()" [disabled]="!selectedPlanes || !selectedPlanes.length"></button>
+                </div>
+            </ng-template>
 
-<table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>Nombre</th>
+            <ng-template pTemplate="right">
+                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+            </ng-template>
+        </p-toolbar>
+           <p-table #dt [value]="planes" [columns]="columns" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nombre','ubicacion.barrio','ubicacion.region']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedPlanes" selectionMode="multiple" [rowHover]="true" dataKey="_id">
+               <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Gestiona Planes</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
 
-        </tr>
-    </thead>
+                        </th>
+                      
+                        <th pSortableColumn="name">Plan <p-sortIcon field="tipo"></p-sortIcon></th>
 
-    <tbody>
-        <tr *ngFor="let plan of planes$ | async">
-            <td>{{plan.name}}</td>
-            <td>{{plan.precio}}</td>
-            <td>
-                <button class="btn btn-primary me-1" [routerLink]="['editar/', plan._id]">Editar</button>
-                <button class="btn btn-danger" (click)="deletePlan(plan._id || '')">Eliminar</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+                        <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="_id">id <p-sortIcon field="_id"></p-sortIcon></th>
 
-<button class="btn btn-primary mt-3" [routerLink]="['nuevo']">Agrerar Nuevo Plan</button>
+                        <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
+                        <th></th>
+                </ng-template>
+                <ng-template pTemplate="body" let-plan>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="plan"></p-tableCheckbox>                    </td>
+            
+                            <td style="width: 14%; min-width: 10rem;">
+                                <span class="p-column-title">Nombre</span>
+                                <ng-container *ngIf="plan.images && plan.images.length > 0">
+                                  <img src="{{ plan.imagenes[0] }}" alt="Imagen" class="imagen-ajustada">
+                                </ng-container>
+                                <ng-container *ngIf="!plan.images || plan.images.length === 0">
+                                  <i class="pi pi-image" style="font-size: 2rem;"></i> <!-- Puedes usar otro icono o mensaje aquí -->
+                                </ng-container>
+                              </td>
+                              
+                            
+                       <td style="width:14%; min-width:10rem;">{{plan.name}}
+</td>                        
 
-<br>
-<br>
-<br>
-<button class="btn btn-primary mt-3" [routerLink]="['']">Volver</button>
 
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span>
+                            {{plan._id}}
+                        </td>
+                        <!-- <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span> -->
+                           <!-- {{ clinica.ubicacion?.barrio }} -->
+                        <!-- </td> -->
+                    
+                        <!-- <td style="width:14%; min-width:10rem;"><span class="p-column-title">id</span> -->
+                           <!-- {{ clinica.ubicacion?.region }} -->
+                        <!-- </td> -->
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Reviews</span>
+                            <p-rating [ngModel]="plan.rating" [readonly]="true" [cancel]="false"></p-rating>
+                        </td>
+                       
+                        <td>
+                            <div class="flex">
+                                <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" [routerLink]="['editar/', clinica._id]"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteClinica(clinica)"></button> -->
+                    
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editPlan(plan)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletePlan(plan)"></button>
+                            </div>
+
+                        </td>
+                        
+                    </tr>
+                </ng-template>
+           </p-table>
+       </div> 
+
+
+
+       <p-dialog [(visible)]="planDialog"  [style]="{width: '840px' ,margin: '0px'}" [maximizable]="true" header="Editar Planes" [modal]="true" class="p-fluid custom-dialog">
+       <ng-template pTemplate="content">
+        <app-edit-plan [planId]="plan._id" (planEditado)="planEditadoHandler($event)" (closeModal)="hideDialogPlan()"></app-edit-plan>
+
+                    </ng-template>
+         
+
+    </p-dialog>
+    <p-dialog [(visible)]="addPlanDialog"  [style]="{width: '840px' ,margin: '0px'}" [maximizable]="true" header="Agregar Nuevo Plan" [modal]="true" class="p-fluid custom-dialog">
+        <ng-template pTemplate="content">
+         <app-add-plan  (planAgregado)="planAgregadoHandler($event)" (closeModal)="hideDialogPlan()" ></app-add-plan>
+                     </ng-template>                    
+     </p-dialog>
+   <p-dialog [(visible)]="deletePlanDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+
+       <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span *ngIf="plan">Confirmar eliminar prestador <b>{{plan.name}}</b>?</span>
+        </div>
+       <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletePlanDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeletePlan(plan._id || '')"></button>
+        </ng-template>
+    </p-dialog>
+   <p-dialog [(visible)]="deletePlanesDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span>Are you sure you want to delete selected products?</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deletePlanesDialog = false"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelectedPlan()"></button>
+        </ng-template>
+    </p-dialog>
+   </div>
+</div>

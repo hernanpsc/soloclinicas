@@ -16,9 +16,13 @@ export class AddEmpresaComponent {
   ) { }
 
   addEmpresa(empresa: Empresa) {
+    console.log(empresa._id)
+    console.log(empresa.item_id)
+    console.log(empresa.sigla)
     this.empresasService.createEmpresa(empresa).subscribe({
       next: () => {
-        // La clínica se agregó con éxito, emite el evento para notificar al componente padre
+        console.log('La clínica se agregó con éxito')
+        //emite el evento para notificar al componente padre
         this.empresaAgregada.emit(empresa);
         // Restablecer el formulario u otras acciones necesarias después de agregar la clínica
         console.log('Evento closeModal emitido'); // Verificar si se emite el evento

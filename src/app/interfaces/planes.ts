@@ -9,7 +9,8 @@ export interface Planes {
     tags?: string[];
     hijosSolos?: string;
     name?: string;
-    images?:string[];
+    images?:MiImagen[];
+    imagenes?: string[] | undefined;
     folletos?:string[];
     beneficios?:string[];
     clinicas?:string[];

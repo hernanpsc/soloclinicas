@@ -28,7 +28,6 @@ export class EditEmpresaComponent implements OnInit {
       alert('ID no proporcionado');
       return;
     }
-  console.log(id)
     this.empresasService.getEmpresa(id).subscribe((empresa) => {
       this.empresa.next(empresa);
     });

@@ -29,18 +29,24 @@
                     </div>
                   </div>
                 </div>
-                
-                
+                <div class="col-12 md:col-6">
+                  <!-- Ancho de 50% para el p-treeSelect -->
+                  <div class="tree-select-container">
+                <!-- <p-treeSelect #treeSelect class="w-full" containerStyleClass="w-full" formControlName="coberturas"
+                [options]="nodes" display="chip" [metaKeySelection]="true" selectionMode="checkbox" placeholder="Selecciona Coberturas"
+                >
+              </p-treeSelect>  --> 
+             </div>
+            </div>
                   <div class="col-12 md:col-6">
                     <!-- Ancho de 50% para el p-treeSelect -->
                     <div class="tree-select-container">
-                      <p-treeSelect #treeSelect class="w-full" containerStyleClass="w-full" formControlName="coberturas"
-                        [options]="nodes" display="chip" [metaKeySelection]="true" selectionMode="checkbox" placeholder="Selecciona Coberturas"
-                        >
-                      </p-treeSelect>
+                      <p-treeSelect #tree class="w-full" containerStyleClass="w-full" [options]="nodes"
+                      selectionMode="checkbox" display="chip" [metaKeySelection]="true" 
+                      formControlName="coberturas" placeholder="Selecciona Coberturas">
+              </p-treeSelect>
                     </div>
                   </div>
-                  
                   
                 
                   

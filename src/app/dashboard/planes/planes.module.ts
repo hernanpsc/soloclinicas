@@ -15,7 +15,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
-
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { PlanesListComponent } from './planes-list/planes-list.component';
 import { AddPlanComponent } from './add-plan/add-plan.component';
 import { PlanesFormComponent } from './planes-form/planes-form.component';
@@ -52,7 +52,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
         TreeSelectModule,
         TreeModule,
         MegaMenuModule,
-        PanelMenuModule
+        PanelMenuModule,
+        InputSwitchModule
     ],
     declarations: [
         AddPlanComponent,

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Planes } from '../../../interfaces/planes';
+import { SelectItem } from 'primeng/api';
 
 
 @Component({
@@ -18,6 +19,9 @@ export class PlanesFormComponent implements OnInit {
   formSubmitted = new EventEmitter<Planes>();
 
   planForm: FormGroup = new FormGroup({});
+  valSwitch: boolean = false;
+  selectedDrop: SelectItem = { value: '' };
+  categorias: SelectItem[] = [];
 
   constructor(private fb: FormBuilder) { }
   get name() { return this.planForm.get('name'); }
@@ -55,7 +59,12 @@ export class PlanesFormComponent implements OnInit {
         clinicas: [ plan.clinicas],
       });
     });
-
+    this.categorias = [
+      { label: 'Inicial', value: { id: 1, name: 'New York', code: 'NY' } },
+      { label: 'Intermedio', value: { id: 2, name: 'Rome', code: 'RM' } },
+      { label: 'Superior', value: { id: 3, name: 'London', code: 'LDN' } },
+      { label: 'Premium', value: { id: 4, name: 'Istanbul', code: 'IST' } },
+  ];
     this.planForm.valueChanges.subscribe((val) => { this.formValuesChanged.emit(val); });
   }
  

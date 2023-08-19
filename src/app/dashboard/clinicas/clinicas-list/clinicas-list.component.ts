@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Clinicas } from '../../../interfaces/clinicas';
 import { ClinicasService } from '../../../servicios/clinicas.service';
 import { MessageService } from 'primeng/api';
@@ -49,7 +49,7 @@ export class ClinicasListComponent implements OnInit {
         { field: 'rating', header: 'Reviews' },
     ];  
 
-
+   
   }
   private fetchClinicas(): void {
     this.clinicasService.getClinicas().subscribe({
@@ -60,6 +60,7 @@ export class ClinicasListComponent implements OnInit {
         console.error('Error al obtener las clínicas:', error);
       }
     });
+   
   }
 
   onClinicaSelect() {console.log('Hola')
@@ -180,15 +181,18 @@ closeModal() {
 }
 
 clinicaEditdaHandler(clinica: Clinicas) {
-  // Realiza la acción que necesites con la clínica editada
-  const clinicaActualizada = this.clinicas.find(c => c._id === clinica._id);
+  const index = this.clinicas.findIndex(c => c._id === clinica._id);
 
-  if (!clinicaActualizada) {
-    console.error('La clínica no existe en el array de clínicas.');
+  
+  if (index === -1) {
+    console.error('La empresa no existe en el array de empresas.');
     return;
   }
 
-  const clinicaNombre = clinicaActualizada.nombre;
+  this.clinicas[index] = clinica; // Reemplazar la empresa en el array con la empresa editada
+
+  // Realiza la acción que necesites con la clínica editada
+  const clinicaNombre = clinica.nombre;
 
   this.clinicaDialog = false;
 
@@ -198,6 +202,11 @@ clinicaEditdaHandler(clinica: Clinicas) {
 }
 
 
+
+
+
+
+ 
 clinicaAgregadaHandler(clinica: Clinicas) {
   // Realiza la acción que necesites con la clínica agregada
   this.clinicas.push(clinica);

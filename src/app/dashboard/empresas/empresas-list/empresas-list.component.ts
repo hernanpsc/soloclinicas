@@ -39,11 +39,11 @@ export class EmpresasListComponent implements OnInit {
   ngOnInit(): void {
     this.fetchEmpresas();
     this.columns = [
-      { field: '_id', header: 'ID' },
-      { field: 'nombre', header: 'Nombre' },
-      { field: 'nombre', header: 'Nombre' },
-      { field: 'sigla', header: 'Nombre' },
-
+      { field: 'name', header: 'Empresa' },
+      { field: 'name', header: 'Nombre' },
+      { field: '_id', header: 'id' },
+ 
+      { field: 'rating', header: 'Reviews' },
   ];  
   }
 
@@ -74,14 +74,7 @@ onEmpresaSelect() {console.log('Hola')
     return index;
 }
 
-createId(): string {
-  let id = '';
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (let i = 0; i < 5; i++) {
-      id += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return id;
-}
+
 
 onGlobalFilter(table: Table, event: Event) {
   table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
@@ -168,22 +161,27 @@ this.empresaDialog = false;
 }
 
 empresaEditadaHandler(empresa: Empresa) {
-// Realiza la acción que necesites con la clínica editada
-const empresaActualizada = this.empresas.find(c => c._id === empresa._id);
+  const index = this.empresas.findIndex(c => c._id === empresa._id);
 
-if (!empresaActualizada) {
-  console.error('La clínica no existe en el array de clínicas.');
-  return;
+  if (index === -1) {
+    console.error('La empresa no existe en el array de empresas.');
+    return;
+  }
+
+  this.empresas[index] = empresa; // Reemplazar la empresa en el array con la empresa editada
+
+  const empresaNombre = empresa.name;
+
+  this.empresaDialog = false;
+
+  this.messageService.add({
+    severity: 'success',
+    summary: 'Éxito',
+    detail: `¡${empresaNombre} se editó correctamente!`,
+    life: 3000
+  });
 }
 
-const empresaNombre = empresaActualizada.name;
-
-this.empresaDialog = false;
-
-this.messageService.add({ severity: 'success', summary: 'Éxito', detail: `¡${empresaNombre} se editó correctamente!`, life: 3000 });
-// console.log('Empresa editada:', empresa);
-// Otras acciones...
-}
 
 
 empresaAgregadaHandler(empresa: Empresa) {
@@ -198,4 +196,5 @@ if (empresaAgregada) {
 
   this.messageService.add({ severity: 'success', summary: 'Éxito', detail: `¡${empresaNombre} se agrogó exitosamente!`, life: 3000 });
 }
-}}
+}
+}
