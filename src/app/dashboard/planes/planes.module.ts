@@ -25,7 +25,9 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeModule } from 'primeng/tree';
 import { MessageService } from 'primeng/api';
 import { MegaMenuModule } from 'primeng/megamenu';
-import { PanelMenuModule } from 'primeng/panelmenu';
+import { PanelMenuModule } from 'primeng/panelmenu'
+import {MatChipsModule} from '@angular/material/chips';
+;
 import { ChipsModule } from 'primeng/chips';
 import { ChipsFormControlDirective } from '../../directivas/chips-value-accessor'; // Asegúrate de que la ruta del archivo sea correcta
 
@@ -55,7 +57,8 @@ import { ChipsFormControlDirective } from '../../directivas/chips-value-accessor
         MegaMenuModule,
         PanelMenuModule,
         InputSwitchModule,
-        ChipsModule
+        ChipsModule,
+        MatChipsModule
     ],
     declarations: [
         AddPlanComponent,

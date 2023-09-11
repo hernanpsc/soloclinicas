@@ -40,3 +40,9 @@ export interface Imagen {
     attribute_group_name:string;
     value_type: string;
   }
+
+  export interface Tag {
+    tag?: string;
+    descripcion?: string;
+  }
+  

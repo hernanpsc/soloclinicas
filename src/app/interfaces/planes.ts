@@ -1,5 +1,6 @@
 import { Imagen as MiImagen } from './interfaces';
 import { Attribute as Attribute } from './interfaces';
+import { Tag as MisTags } from './interfaces';
 
 
 export interface Planes {
@@ -7,7 +8,7 @@ export interface Planes {
   item_id?: string;
   copagos?: boolean;
   category?: string;
-  tags?: string[];
+  tags?: MisTags[];
   hijosSolos?: boolean;
   name?: string;
   empresa?: string;
