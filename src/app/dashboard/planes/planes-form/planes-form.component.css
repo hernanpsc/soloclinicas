@@ -3,3 +3,10 @@
     margin-left: auto;
     margin-right: auto;
   }
+
+  .thumbnail {
+    width: 100px; /* Adjust the width and height as needed */
+    height: 100px;
+    margin: 5px;
+  }
+  

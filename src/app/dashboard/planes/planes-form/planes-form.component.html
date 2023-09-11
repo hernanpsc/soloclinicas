@@ -1,47 +1,48 @@
 <form class="plan-form" autocomplete="off" [formGroup]="planForm" (ngSubmit)="submitForm()">
-  <!-- <div class="form-floating mb-3">
+  <div class="form-floating mb-3">
     <input class="form-control" type="text" id="_id" formControlName="_id" placeholder="ID" required>
     <label for="id">id</label>
-  </div> -->
+  </div>
   <div class="form-floating mb-3">
     <label htmlFor="nombre">Nombre</label>
     <input pInputText id="name" type="text" formControlName="name" placeholder="Plan Bronce" required/>
-  </div>
-  <div class="form-floating mb-3">
-    <label htmlFor="nombre">Price</label>
-    <input pInputText id="Price" type="text" formControlName="price" placeholder="Price" required/>
-  </div>
-  <div class="form-floating mb-3">
-    <label htmlFor="nombre">Precio</label>
-    <input pInputText id="precio" type="text" formControlName="precio" placeholder="Precio" required/>
-  </div>
-   
+  </div>   
+  
   <div class="form-floating mb-3">
     <label htmlFor="rating">Rating</label>
-    <p-rating></p-rating>
+    <p-rating formControlName="rating"></p-rating>
 </div>
   
     <br><br>
     <label htmlFor="copagos">Copagos</label>
-    <p-inputSwitch formControlName="valCopagos"></p-inputSwitch>
+    <p-inputSwitch formControlName="copagos"></p-inputSwitch>
        <br>
    <br>
   <label for="category">Category</label>
-  <p-dropdown [options]="categorias" formControlName="selectedDrop" placeholder="Select a City" [showClear]="true"></p-dropdown>
-
-    <div class="form-floating mb-3">
-      <label htmlFor="tags">Tags</label>
-      <input pInputText id="tags" type="text" formControlName="tags" placeholder="tags" required/>
-    </div>
-
-    <label htmlFor="copagos">Hijos Solos?</label>
-    <p-inputSwitch formControlName="valHIjosSolos"></p-inputSwitch>
+  <p-dropdown [options]="categorias" formControlName="category" placeholder="Categoria" [showClear]="true"></p-dropdown>
+ 
+  <label for="tags">Etiquetas</label>
+    <p-chips formControlName="values"></p-chips>
+  <label htmlFor="copagos">Hijos Solos?</label>
+   
+  <p-inputSwitch formControlName="hijosSolos"></p-inputSwitch>
     <br><br>
-   
-   
 
    
-
+    <ng-container formArrayName="attributes">
+      <ng-container *ngFor="let attributeGroup of attributes.controls; let i = index">
+        <div [formGroupName]="i">
+          <div>
+            <input id="id" type="text" formControlName="id" />
+            <input id="name" type="text" formControlName="name" />   
+          </div>             
+        </div>
+      </ng-container>
+    </ng-container>
+    <button type="button" (click)="addNewAttribute()">Add</button>
+    
+    
+    
   <div class="form-floating mb-3">
      
     <input class="form-control" type="text" id="folletos" formControlName="folletos" placeholder="Folletos">
@@ -53,13 +54,12 @@
     <input class="form-control" type="text" id="clinicas" formControlName="clinicas" placeholder="Clinicas">
     <label for="clinicas">Clinicas</label>
   </div>
-  <div class="form-floating mb-3">
-     
-    <input class="form-control" type="text" id="images" formControlName="images" placeholder="Imagenes" >
-    <label for="imagenes">Imagenes</label>
-  </div>
-    
-    
+  
+  
+  
+  
+  
+  
 
     
    
@@ -71,8 +71,11 @@
     
   
 
-
-    <button class="btn btn-primary" type="submit" [disabled]="planForm.invalid">Add</button>
+  <div class="m-2">
+    <button type="submit" pButton pRipple [label]="buttonText" icon="pi pi-plus" class="p-button-success mr-2" [disabled]="planForm.invalid"></button>
+    <button type="button" pButton pRipple label="Cancelar" icon="pi pi-trash" class="p-button-danger" (click)="cancelarDialogo()"></button>
+  </div>
+   
   </form>
 
  

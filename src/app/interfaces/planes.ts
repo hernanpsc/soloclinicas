@@ -1,25 +1,37 @@
 import { Imagen as MiImagen } from './interfaces';
+import { Attribute as Attribute } from './interfaces';
+
 
 export interface Planes {
-    price?: string;
-    precio?: string;
-    rating?: '1' | '2' | '3'| '4' | '5';
-    copagos?: string;
-    category?: 'inferior' | 'intermedio' | 'superior';
-    tags?: string[];
-    hijosSolos?: string;
-    name?: string;
-    images?:MiImagen[];
-    imagenes?: string[] | undefined;
-    folletos?:string[];
-    beneficios?:string[];
-    clinicas?:string[];
-    _id?: string;
-    item_id?: string;
+  _id?: string;
+  item_id?: string;
+  copagos?: boolean;
+  category?: string;
+  tags?: string[];
+  hijosSolos?: boolean;
+  name?: string;
   empresa?: string;
-  sigla?: string; 
-  linea?: string; 
-  }
-  
-  
+  sigla?: string;
+  folleto?: string[];
+  images?: MiImagen[];
+  beneficios?: string[];
+  clinicas?: string[];
+  price?: number;
+  rating?: number;
+  attributes?: Attribute[];
+  Cirugia_Estetica?: boolean;
+  Cobertura_Nacional?: boolean;
+  Habitacion_Individual?: boolean;
+  Ortodoncia_Adultos?: boolean;
+  PMO_Solo_por_Aportes?: boolean;
+  Sin_Copagos?: boolean;
+  precio?: number;
+  valueSlide3?: number;
+  valueSlide4?: number;
+  linea?: string;
+}
+
+
+
+
 

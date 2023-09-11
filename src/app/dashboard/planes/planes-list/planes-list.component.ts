@@ -55,8 +55,8 @@ export class PlanesListComponent implements OnInit {
     private empresasService: EmpresasService
     ) { }
     ngOnInit(): void {
-  
-      this.fetchEmpresas()
+      this.fetchPlanes();
+
       this.columns = [
         { field: 'name', header: 'Plan' },
         { field: 'name', header: 'Nombre' },
@@ -89,60 +89,49 @@ export class PlanesListComponent implements OnInit {
   
     }
   
-    closeModa(id: string) {
-      this.modalService.close('custom-modal-3');
   
+    closeModal() {
+      this.planDialog = false;
     }
-
-
-  deletePlan(id: string): void {
-    this.planesService.deletePlan(id).subscribe({
-      next: () => this.fetchPlanes()
-    });
-  }
+      
 
   
-  private fetchEmpresas(): void {
-    this.empresasService.getEmpresas().subscribe({
-      next: (empresas: Empresa[]) => {
-        this.empresas = empresas;
-        console.log(this.empresas)
-        this.fetchPlanes();      },
-      error: (error: any) => {
-        console.error('Error al obtener las empresas:', error);
-      }
-    });
+   
+  deletePlan(plan: Planes) {
+    this.deletePlanDialog = true;
+    this.plan = { ...plan };
   }
   
+ 
   private fetchPlanes(): void {
     this.planesService.getPlanes().subscribe({
       next: (planes: Planes[]) => {
         this.planes = planes;
-        this.mergeImagesToPlanes()
+        // this.mergeImagesToPlanes()
         console.log(this.planes)
 
       },
       error: (error: any) => {
-        console.error('Error al obtener las empresas:', error);
+        console.error('Error al obtener los planes:', error);
       }
     });
   }
 
-  private mergeImagesToPlanes(): void {
-    this.planes.forEach(plan => {
-      const matchingEmpresa = this.empresas.find(empresa => empresa.sigla === plan.sigla);
+  // private mergeImagesToPlanes(): void {
+  //   this.planes.forEach(plan => {
+  //     const matchingPlan = this.planes.find(plan => plan.sigla === plan.sigla);
     
-      if (matchingEmpresa && matchingEmpresa.images && matchingEmpresa.images.length > 0) {
-        if (!plan.imagenes) {
-          plan.imagenes = [];
-        }
-        const firstEmpresaImage = matchingEmpresa.images[0]; // Cambia 'url' por el nombre correcto de la propiedad en 'images'
-        if (typeof firstEmpresaImage === 'string') {
-          plan.imagenes[0] = firstEmpresaImage;
-        }
-      }
-    });
-  }
+  //     if (matchingPlan && matchingPlan.images && matchingPlan.images.length > 0) {
+  //       if (!plan.images) {p
+  //         plan.images = [];
+  //       }
+  //       const firstEmpresaImage = matchingPlan.images[0];
+  //       if (typeof firstEmpresaImage === 'string') {
+  //         plan.images[0] = firstEmpresaImage;
+  //       }
+  //     }
+  //   });
+  // }
   
   
   
@@ -176,6 +165,20 @@ planEditadoHandler(plan: Planes) {
     console.error('El plan no existe en el array de planes.');
     return;
   }
+
+
+  this.planes[index] = plan; // Reemplazar el plan en el array con la empresa editada
+
+  const planNombre = plan.name;
+
+  this.planDialog = false;
+
+  this.messageService.add({
+    severity: 'success',
+    summary: 'Éxito',
+    detail: `¡${planNombre} se editó correctamente!`,
+    life: 3000
+  });
 }
 
 confirmDeleteSelectedPlan() {
@@ -240,4 +243,18 @@ confirmDeletePlan(id: string): void {
       this.messageService.add({ severity: 'success', summary: 'Éxito', detail: `¡${planNombre} se agrogó exitosamente!`, life: 3000 });
     }
     }
+
+    getLogoImage(plan: Planes): string | null {
+      if (plan.images && plan.images.length > 0) {
+        const logoImage = plan.images.find((image: any) => image.descripcion === 'logo');
+        if (logoImage && logoImage.url) {
+          return logoImage.url as string;
+        }
+      }
+      return null;
+    }
+    
+    
+    
+    
 }

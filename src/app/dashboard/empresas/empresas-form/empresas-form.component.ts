@@ -6,7 +6,6 @@ import { Empresa } from '../../../interfaces/empresas';
 import { EmpresasService } from '../../../servicios/empresas.service';
 import { map } from 'rxjs/operators';
 import { SERVER_URL } from '../../../constants';
-
 @Component({
   selector: 'app-empresa-form',
   templateUrl: './empresas-form.component.html',
@@ -19,16 +18,23 @@ export class EmpresasFormComponent implements OnInit {
   @Output() formSubmitted = new EventEmitter<Empresa>();
   @Output() cancelDialog = new EventEmitter<void>();
   @Input() buttonText: string = 'Guardar';
-  private fileTmp: any;
-  empresaForm: FormGroup = new FormGroup({});
   isEditMode: boolean = false;
-  displayUploadDialog: boolean = false;
-  imageUploadForm: FormGroup;  
-  selectedFile: File | null = null;
+  empresaForm: FormGroup = new FormGroup({});
+  serverUrl = SERVER_URL;
+
   generatedSiglas: string[] = [];
   generatedItemIDs: number[] = [];
   generated_ids: string[] = [];
-  serverUrl = SERVER_URL;
+  
+  private fileTmp: any;
+
+  displayUploadDialog: boolean = false;
+  imageUploadForm: FormGroup;  
+  selectedFile: File | null = null;
+
+  
+
+  
   constructor(private fb: FormBuilder,private http: HttpClient,private empresasService: EmpresasService) {
     this.imageUploadForm = this.fb.group({
       image: [null, Validators.required],
@@ -92,13 +98,9 @@ console.log(empresa._id)
 submitForm() {
   console.log(this.empresaForm.value);
   const formValue = this.empresaForm.value;
-
   // Realizar acciones según el contexto (agregar o editar)
   if (this.isEditMode == true) {
     // Acciones para editar empresa
-    // ...
-   
-
     console.log('Datos de empresa editados:', formValue);
   } else {
     // Acciones para agregar nueva empresa
@@ -107,7 +109,7 @@ submitForm() {
     const newItem_id = this.generateItem_Id()
     const new_id = this.generate_id(24)
     const lineasValue = this.empresaForm.get('lineas')?.value;
-    const lineasArray = ['']
+    const lineasArray = [''];
     if(lineasValue){
       const lineasArray = lineasValue.split(',').map((value: string) => value.trim());  
     }

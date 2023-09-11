@@ -194,7 +194,7 @@ const empresaAgregada = this.empresas.find(c => c._id === empresa._id);
 if (empresaAgregada) {
   const empresaNombre = empresaAgregada.name;
 
-  this.messageService.add({ severity: 'success', summary: 'Éxito', detail: `¡${empresaNombre} se agrogó exitosamente!`, life: 3000 });
+  this.messageService.add({ severity: 'success', summary: 'Éxito', detail: `¡${empresaNombre} se agregó exitosamente!`, life: 3000 });
 }
 }
 }

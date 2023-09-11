@@ -53,7 +53,7 @@ this.planEditado.emit(plan);
           console.log('Evento closeModal emitido'); // Verificar si se emite el evento
         },
         error: (error) => {
-          alert('Falló actualizar clínica');
+          alert('Falló actualizar plan');
           console.error(error);
         }
       });

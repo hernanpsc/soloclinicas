@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, Subject, tap, of, BehaviorSubject, map} from 'rxjs';
 import { Empresa } from '../interfaces/empresas';
 import { SERVER_URL } from '../constants';
 import { Form } from '@angular/forms';
@@ -10,20 +10,20 @@ import { Form } from '@angular/forms';
 })
 export class EmpresasService {
   private url = SERVER_URL;
-  private empresas$: Subject<Empresa[]> = new Subject();
+  public empresas$: Subject<Empresa[]> = new Subject<Empresa[]>();
+    private destroy$ = new Subject<void>();
+  constructor(private httpClient: HttpClient) {
+    this.refreshEmpresas();
+   }
 
-  constructor(private httpClient: HttpClient) { }
-
-  private refreshEmpresas() {
-    this.httpClient.get<Empresa[]>(`${this.url}/empresas`)
-      .subscribe(empresas => {
-        this.empresas$.next(empresas);
-      });
+   private refreshEmpresas() {
+    this.httpClient.get<Empresa[]>(`${this.url}/empresas`).subscribe((empresas) => {
+      this.empresas$.next(empresas);
+    });
   }
 
-  getEmpresas(): Subject<Empresa[]> {
-    this.refreshEmpresas();
-    return this.empresas$;
+  public getEmpresas(): Observable<Empresa[]> {
+    return this.empresas$.asObservable();
   }
 
   getEmpresa(id: string): Observable<Empresa> {
@@ -44,5 +44,14 @@ export class EmpresasService {
 
   sendPost(body:FormData):Observable<any>{
     return this.httpClient.post(`${this.url}/uploads`,body)
+  }
+
+  public getSiglaEmpresa(empresaName: string): Observable<string | undefined> {
+    return this.getEmpresas().pipe(
+      map((empresas: any[]) => {
+        const empresaEncontrada = empresas.find((empresa) => empresa.name === empresaName);
+        return empresaEncontrada ? empresaEncontrada.sigla : undefined;
+      })
+    );
   }
 }

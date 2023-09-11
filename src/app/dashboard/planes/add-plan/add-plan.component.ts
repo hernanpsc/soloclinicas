@@ -28,7 +28,7 @@ export class AddPlanComponent {
         console.log('Evento closeModal emitido'); // Verificar si se emite el evento
       },
       error: (error) => {
-        alert('Falló crear clínica');
+        alert('Falló crear plan');
         console.error(error);
       },
     });

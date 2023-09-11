@@ -26,7 +26,8 @@ import { TreeModule } from 'primeng/tree';
 import { MessageService } from 'primeng/api';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { PanelMenuModule } from 'primeng/panelmenu';
-
+import { ChipsModule } from 'primeng/chips';
+import { ChipsFormControlDirective } from '../../directivas/chips-value-accessor'; // Asegúrate de que la ruta del archivo sea correcta
 
 
 @NgModule({
@@ -53,13 +54,15 @@ import { PanelMenuModule } from 'primeng/panelmenu';
         TreeModule,
         MegaMenuModule,
         PanelMenuModule,
-        InputSwitchModule
+        InputSwitchModule,
+        ChipsModule
     ],
     declarations: [
         AddPlanComponent,
         PlanesListComponent,
         PlanesFormComponent,
-        EditPlanComponent
+        EditPlanComponent,
+        ChipsFormControlDirective
     ],
     providers: [
         MessageService

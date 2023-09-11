@@ -1,6 +1,8 @@
 export interface Imagen {
+    id?: string;
     url?: string;
     descripcion?: string;
+    empresa?:string
   }
   
   export interface Ubicacion {
@@ -27,4 +29,14 @@ export interface Imagen {
   export interface PlanSeleccionado {
     label: string;
     key: string;
+  }
+
+  export interface Attribute {
+    id: string;
+    name?: string;
+    value_id?: Item[][];
+    value_name?:string;
+    attribute_group_id: string;
+    attribute_group_name:string;
+    value_type: string;
   }
