@@ -187,8 +187,8 @@ export class PlanesFormComponent implements OnInit {
         const copagos = this.planForm.get('copagos')?.value; // boolean tomado del formulario
         const Sin_Copagos = this.planForm.get('Sin_copagos')?.value; // boolean tomado del formulario
         const sigla = this.findSiglaEmpresa(empresa); // buscar sigla de la empresa "sigla"
-        const price = this.planForm.get('price')?.value; // Obtener el valor del campo 'name'
-        const precio = this.planForm.get('precio')?.value; // Obtener el valor del campo 'name'
+        // const price = this.planForm.get('price')?.value; // Obtener el valor del campo 'name'
+        // const precio = this.planForm.get('precio')?.value; // Obtener el valor del campo 'name'
         const rating = this.planForm.get('rating')?.value; // Obtener el valor del campo 'name'
         const category = this.planForm.get('category')?.value; // Obtener el valor del campo 'name'
         // const beneficio = this.planForm.get('beneficios')?.value; // Obtener el valor del campo 'name'
